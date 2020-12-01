@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const { all } = require('../routes/user');
+var fs = require('fs');
 
 exports.getAllUsers = async (req, res, next) =>{
     try{
@@ -42,7 +43,14 @@ exports.loginUser = async (req, res, next) =>{
         const login = await User.find(userDetails);
         const [loginTwo] = await User.find(userDetails);
         if(login[0].length>0){ //check if there was any matches
-            res.status(202).json(loginTwo);
+            //retrieve profile picture and replace picture with base64 representation.
+            const path = "../backend/assets/users/"+loginTwo[0].picture;
+            fs.readFile(path, 'base64', function (err, result) {
+                if(err)
+                    console.log(err);
+                loginTwo[0].picture = "data:image/jpeg;base64,"+ result;
+                res.status(202).json(loginTwo);
+            });
         }
         else{
             res.status(404).json(loginTwo);
