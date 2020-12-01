@@ -12,4 +12,8 @@ module.exports = class Product {
     static fetchAll() {
         return db.execute('SELECT * FROM product');
     }
+
+    static find(product) {
+        return db.execute('select * from product where pid = ?', [product.pid]);
+    }
 };

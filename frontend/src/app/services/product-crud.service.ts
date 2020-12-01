@@ -18,4 +18,10 @@ export class ProductCrudService {
   fetchAll(): Observable<Product[]> {
     return this.http.get<Product[]>(this.url, { responseType: "json" });//.pipe(tap((_)=>console.log("fetched users")));
   }
+
+  getProduct(pid: Number): Observable<Product> {
+    const productItem = `http://localhost:3000/user/shop/${pid}`;
+    console.log(productItem)
+    return this.http.get<Product>(productItem, { responseType: "json" });//.pipe(tap((_)=>console.log("fetched users")));
+  }
 }
