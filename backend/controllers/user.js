@@ -1,11 +1,17 @@
 const User = require('../models/user');
 const { all } = require('../routes/user');
+const FileSave = require('../util/filesave');
 var fs = require('fs');
+var fsp = require('fs').promises;
 
 exports.getAllUsers = async (req, res, next) =>{
     try{
         const [allUsers] = await User.fetchAll();
+        for (var user of allUsers) {
+            user.picture =  "data:image/jpeg;base64," + await fsp.readFile("../backend/assets/users/"+user.picture, 'base64');
+        }
         res.status(200).json(allUsers);
+
     } catch{
         console.log('Error');
     }
@@ -15,12 +21,14 @@ exports.registerUser = async (req, res, next) =>{
     const email = req.body.email;
     const password = req.body.password;
     const role = req.body.role;
+    const picture = "defaultProfilePic.jpg";
   
     try{
         const userDetails = {
             email:email,
             password:password,
             role:role,
+            picture:picture
         };
     
         const postUser = await User.post(userDetails);
@@ -107,3 +115,17 @@ exports.deleteUser = async (req, res, next) =>{
         console.log('Error');
     }
 };
+
+exports.putPicture = async (req, res, next) => {
+    const id = req.body.id;
+    const picture = req.body.picture;
+    try {
+        console.log(id);
+        //console.log(picture);
+        FileSave.savePicture(id,picture);
+        res.send("OK").status(200);
+    } catch (error) {
+        console.log('ERROR:  ' + error);
+        res.send("error").status(400);
+    }
+}

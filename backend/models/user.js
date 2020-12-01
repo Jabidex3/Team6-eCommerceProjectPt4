@@ -1,5 +1,4 @@
 const db = require('../util/database');
-
 module.exports = class User{
     constructor(id,email,password,role){
         this.id=id;
@@ -14,11 +13,11 @@ module.exports = class User{
     static fetchAll() {
         return db.execute('SELECT * FROM user');
     }
-
+    
     static post(user) {
         // console.log(email);
         // console.log(password);
-        return db.execute('Insert into user (email, password, role) Values (?,?,?)', [user.email,user.password,user.role]);
+        return db.execute('Insert into user (email, password, role, picture) Values (?,?,?,?)', [user.email,user.password,user.role,user.picture]);
     }
 
     static update(user){
@@ -28,4 +27,5 @@ module.exports = class User{
     static delete(id){
         return db.execute('delete from user where id = ?', [id]);
     }
+    
 };
