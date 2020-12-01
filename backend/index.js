@@ -6,7 +6,7 @@ const userRoutes = require('./routes/user');
 
 
 const app = express();
-
+const PORT = 3000;
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
@@ -22,4 +22,4 @@ app.use('/',userRoutes);
 // app.use('/login',userRoutes); 
 // app.use('/user',userRoutes); 
 
-app.listen(3000,()=> console.log('listening on port 3000'));
+app.listen(PORT,()=> console.log(`listening on port ${PORT}`));

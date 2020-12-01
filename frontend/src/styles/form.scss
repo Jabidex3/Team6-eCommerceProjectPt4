@@ -1,0 +1,20 @@
+.formContainer {
+    width: 100%;
+}
+
+/* Login, Register Account */
+.authForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputField {
+    width: 50%;
+}
+
+.error {
+    color: $error-color;
+    text-align: center;
+}
