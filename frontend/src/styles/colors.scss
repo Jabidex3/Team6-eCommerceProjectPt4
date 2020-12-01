@@ -1,0 +1,26 @@
+// Color Variables + Accents
+
+$blue: #0080FF; 
+$blue-hover: #008CBA;
+
+$red: #F44336;
+$red-hover: #FF6666;
+
+$green: #4CAF50;
+$green-hover: lightgreen; // *
+
+$gray: #E7E7E7;
+$gray-hover: darkgray; // *
+
+$black: #262626;
+$black-hover: #666;
+
+// Accents
+$primary-color: $blue;
+$primary-color-hover: $blue-hover;
+
+$error-color: $red;
+$error-color-hover: $red-hover;
+
+$success-color: $green;
+$success-color-hover: $green-hover;

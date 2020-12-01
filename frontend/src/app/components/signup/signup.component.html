@@ -1,28 +1,47 @@
 <app-navbar></app-navbar>
-<form [formGroup]="registerForm" (ngSubmit)="post()" novalidate>
-    <h1>Register Yourself:</h1>
-    <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input #emailInp matInput placeholder="example@gmail.com" formControlName="email" />
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-        <input #pwInp matInput placeholder="password" formControlName="password"/>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-        <mat-label>Re-Enter Password</mat-label>
-        <input #repwInp matInput placeholder="reenter password" formControlName="reenterPassword"/>
-    </mat-form-field>
-    <br>
-    <!-- <mat-form-field>
+<h1>Register</h1>
+
+<div class="formContainer">
+
+    <form [formGroup]="registerForm" (ngSubmit)="post()" novalidate class="authForm">
+        <mat-form-field appearance="fill" class="inputField">
+            <mat-label>Email</mat-label>
+            <input #emailInp matInput placeholder="example@gmail.com" formControlName="email" />
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field appearance="fill" class="inputField">
+            <mat-label>Password</mat-label>
+            <input #pwInp matInput placeholder="password" formControlName="password" />
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field appearance="fill" class="inputField">
+            <mat-label>Re-Enter Password</mat-label>
+            <input #repwInp matInput placeholder="reenter password" formControlName="reenterPassword" />
+        </mat-form-field>
+        <br>
+        <!-- <mat-form-field>
         <mat-label>Role</mat-label>
         <input #roleInp matInput placeholder="user or admin" formControlName="role"/>
     </mat-form-field> -->
-    <button  style="background-color: blue; color: white;margin-right: 10px;" type ="submit">
-        <span>Register</span>
-    </button>
-    <button style="background-color: red; color: white;" type="reset" value="Reset">Cancel</button>
-</form>
-<div #unsuccessLogin *ngIf="div1" style="color: red;">Password and Reenter Password values do not match! Try Again!</div>
+        <span>
+            <button class="loginBtn-register" type="submit">
+                Register
+            </button>
+            <button class="loginBtn-cancel" type="reset" value="Reset">
+                Cancel
+            </button>
+        </span>
+
+    </form>
+
+    <div class="error">
+        <div #unsuccessLogin *ngIf="div1">
+            Password and Reenter Password values do not match! Try Again!
+        </div>
+    </div>
+
+</div>
