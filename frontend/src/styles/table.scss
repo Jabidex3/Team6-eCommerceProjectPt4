@@ -1,0 +1,44 @@
+.wrapTable {
+    border-radius: 10px;
+    overflow: hidden;
+}
+@mixin head {
+    height: 60px;
+    background-color: #36304a;
+    color: white;
+}
+
+.basicTable {
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid $gray;
+    
+    & > thead tr {
+        @include head;
+
+        & > td {
+            padding: 0 20px;
+        }
+    }
+
+    & > tr {
+        display: table-row;
+        flex-wrap: wrap;
+        margin: 0 -15px;
+
+        & > td {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.2;
+            padding: 10px 20px;
+            border-bottom: 2px solid #f2f2f2;
+        }
+    }
+
+    & > tr:hover {
+          background-color: #ececff;
+    }
+}

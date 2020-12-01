@@ -25,3 +25,7 @@
         @include btnStyle($error-color, $error-color-hover);
     }
 }
+
+.adminBtn {
+    @include btnStyle($primary-color, $primary-color-hover)
+}

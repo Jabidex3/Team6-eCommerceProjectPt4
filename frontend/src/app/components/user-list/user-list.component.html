@@ -22,51 +22,80 @@
     
 </div> -->
 <!-- <h1>Welcome {{localStorage.getItem('currentUser') }}</h1> -->
-<button (click)="addUserfunc()" style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;"> Add New
-    User</button>
-<form [formGroup]="newUserForm" (ngSubmit)="post()" novalidate *ngIf="addUser">
-    <h1 style="text-align: center;">Add a New User:</h1>
-    <mat-form-field style="width: 30%;">
+<!-- style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;" -->
+
+<button (click)="addUserfunc()" class="adminBtn">
+    Add New User
+</button>
+
+<form [formGroup]="newUserForm" (ngSubmit)="post()" novalidate *ngIf="addUser" class="centerForm">
+    <h1>Add a New User:</h1>
+
+    <mat-form-field class="inputField-sm">
         <mat-label>Email</mat-label>
         <input #emailInp matInput placeholder="example@gmail.com" formControlName="email" />
     </mat-form-field>
-    <mat-form-field style="width: 30%;margin: 2%;">
+
+    <mat-form-field class="inputField-sm">
         <mat-label>Password</mat-label>
         <input #pwInp matInput placeholder="password" formControlName="password" />
     </mat-form-field>
-    <mat-form-field style="width: 30%;margin: 2%;">
+
+    <mat-form-field class="inputField-sm">
         <mat-label>Role</mat-label>
         <input #roleInp matInput placeholder="user or admin" formControlName="role" />
     </mat-form-field>
-    <button style="background-color: blue; color: white;" type="submit">
-        <span>Add user</span>
+
+    <button class="adminBtn" type="submit">
+        Add user
     </button>
-    <div #unsuccessPost *ngIf="div1" style="color: red;">Invalid Inputs! Try Again!</div>
-    <div #successPost *ngIf="div2" style="color: green;">You have successfully created the new user!</div>
+
+    <div class="error">
+        <div #unsuccessPost *ngIf="div1">
+            Invalid Inputs! Try Again!
+        </div>
+    </div>
+
+    <div class="success">
+        <div #successPost *ngIf="div2">
+            You have successfully created the new user!
+        </div>
+    </div>
+
 </form>
 
 <hr />
 <!-- <div #testerOne *ngIf="div1" style="background-color: blue;">Hi</div>
 <button (click)="div1func()"> test</button> -->
-<button (click)="showUserfunc()" style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;">
-    Show/Hide User List</button>
+<button (click)="showUserfunc()" class="adminBtn">
+    Show/Hide User List
+</button>
+
 <div *ngIf="showUser">
-    <h1 style="text-align: center;">User List</h1>
-    <table style="width: 50%; margin: auto; text-align: center;" border=1>
-        <tr>
-            <th>User Id</th>
-            <th>User Email</th>
-            <th>Delete</th>
-        </tr>
-        <tr *ngFor="let user of users$ | async">
-            <td>{{user.id}}</td>
-            <td>{{user.email}}</td>
-            <td><button mat-icon-button color="warn">
-                    <mat-icon (click)="delete(user.id)">delete</mat-icon>
-                </button>
-            </td>
-        </tr>
-    </table>
+    <h1>User List</h1>
+
+    <div class="wrapTable">
+
+        <table class="basicTable">
+            <thead>
+                <tr>
+                    <td>User Id</td>
+                    <td>User Email</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+
+            <tr *ngFor="let user of users$ | async">
+                <td>{{user.id}}</td>
+                <td>{{user.email}}</td>
+                <td><button mat-icon-button color="warn">
+                        <mat-icon (click)="delete(user.id)">delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
 </div>
 <!-- <mat-card style="width: 50%; margin: auto;">
 

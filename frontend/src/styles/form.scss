@@ -2,8 +2,7 @@
     width: 100%;
 }
 
-/* Login, Register Account */
-.authForm {
+.centerForm {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,9 +11,21 @@
 
 .inputField {
     width: 50%;
+
+    &-sm {
+        width: 30%;
+    }
+}
+
+@mixin validationStyle ($status) {
+    color: $status;
+    text-align: center;
 }
 
 .error {
-    color: $error-color;
-    text-align: center;
+    @include validationStyle($error-color);
+}
+
+.success {
+    @include validationStyle($success-color);
 }
