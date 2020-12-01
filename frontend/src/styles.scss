@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import 
+'styles/colors.scss';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import
+'styles/buttons.scss',
+'styles/form.scss',
+'styles/headings.scss',
+'styles/navbar.scss';
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

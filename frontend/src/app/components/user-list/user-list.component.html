@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
     <span>Ecommerce Application V1</span>
     <span>
         <!-- <a routerLink="/">Home</a> -->
@@ -22,7 +22,8 @@
     
 </div> -->
 <!-- <h1>Welcome {{localStorage.getItem('currentUser') }}</h1> -->
-<button (click)="addUserfunc()" style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;"> Add New User</button>
+<button (click)="addUserfunc()" style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;"> Add New
+    User</button>
 <form [formGroup]="newUserForm" (ngSubmit)="post()" novalidate *ngIf="addUser">
     <h1 style="text-align: center;">Add a New User:</h1>
     <mat-form-field style="width: 30%;">
@@ -31,13 +32,13 @@
     </mat-form-field>
     <mat-form-field style="width: 30%;margin: 2%;">
         <mat-label>Password</mat-label>
-        <input #pwInp matInput placeholder="password" formControlName="password"/>
+        <input #pwInp matInput placeholder="password" formControlName="password" />
     </mat-form-field>
     <mat-form-field style="width: 30%;margin: 2%;">
         <mat-label>Role</mat-label>
-        <input #roleInp matInput placeholder="user or admin" formControlName="role"/>
+        <input #roleInp matInput placeholder="user or admin" formControlName="role" />
     </mat-form-field>
-    <button style="background-color: blue; color: white;"type ="submit">
+    <button style="background-color: blue; color: white;" type="submit">
         <span>Add user</span>
     </button>
     <div #unsuccessPost *ngIf="div1" style="color: red;">Invalid Inputs! Try Again!</div>
@@ -47,24 +48,25 @@
 <hr />
 <!-- <div #testerOne *ngIf="div1" style="background-color: blue;">Hi</div>
 <button (click)="div1func()"> test</button> -->
-<button (click)="showUserfunc()" style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;"> Show/Hide User List</button>
+<button (click)="showUserfunc()" style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;">
+    Show/Hide User List</button>
 <div *ngIf="showUser">
-<h1 style="text-align: center;">User List</h1>
-<table style="width: 50%; margin: auto; text-align: center;" border=1>
-    <tr>
-        <th>User Id</th>
-        <th>User Email</th>
-        <th>Delete</th>
-    </tr>
-    <tr *ngFor="let user of users$ | async">
-        <td>{{user.id}}</td>
-        <td>{{user.email}}</td>
-        <td><button mat-icon-button color="warn">
-            <mat-icon (click)= "delete(user.id)">delete</mat-icon>
-        </button>
-        </td>
-    </tr>
-</table>
+    <h1 style="text-align: center;">User List</h1>
+    <table style="width: 50%; margin: auto; text-align: center;" border=1>
+        <tr>
+            <th>User Id</th>
+            <th>User Email</th>
+            <th>Delete</th>
+        </tr>
+        <tr *ngFor="let user of users$ | async">
+            <td>{{user.id}}</td>
+            <td>{{user.email}}</td>
+            <td><button mat-icon-button color="warn">
+                    <mat-icon (click)="delete(user.id)">delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
 </div>
 <!-- <mat-card style="width: 50%; margin: auto;">
 

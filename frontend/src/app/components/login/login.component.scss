@@ -1,0 +1,35 @@
+// Variables
+$primary-color: #0080ff; /* Blue */
+$primary-color-hover: #008cba;
+$error-color: #f44336; /* Red */
+$error-color-hover: #ff6666;
+
+/* Green: #4CAF50
+Gray: #e7e7e7
+Black: #555555 */
+
+@mixin loginBtnStyling ($colorBg, $colorHover) {
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    margin: 5px;
+    background-color: $colorBg;
+    font-size: 16px;
+    outline: none;
+
+    &:hover{
+        background-color: $colorHover;
+    }
+}
+
+.loginBtn {
+    &-login {
+        @include loginBtnStyling($primary-color, $primary-color-hover);
+    }
+
+    &-cancel {
+        @include loginBtnStyling($error-color, $error-color-hover);
+    }
+}

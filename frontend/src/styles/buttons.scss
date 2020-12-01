@@ -1,0 +1,27 @@
+
+@mixin btnStyle ($colorBg, $colorHover) {
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    margin: 5px;
+    background-color: $colorBg;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0px 1px 4px 1px #888888;
+
+    &:hover{
+        background-color: $colorHover;
+    }
+}
+
+.loginBtn {
+    &-login, &-register {
+        @include btnStyle($primary-color, $primary-color-hover);
+    }
+
+    &-cancel {
+        @include btnStyle($error-color, $error-color-hover);
+    }
+}
