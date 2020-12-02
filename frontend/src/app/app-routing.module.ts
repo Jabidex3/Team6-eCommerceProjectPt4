@@ -6,14 +6,18 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { ViewItemComponent } from './components/view-item/view-item.component';
 
 const routes: Routes = [
-  {path:"", component: HomeComponent},
-  {path:"user", component: UserComponent},
-  {path:"admin", component: UserListComponent},
-  {path:"register", component: SignupComponent},
-  {path:"login", component: LoginComponent},
-  {path:"**", redirectTo: ""},
+  { path: "", component: HomeComponent },
+  { path: "user", component: UserComponent },
+  { path: "admin", component: UserListComponent },
+  { path: "register", component: SignupComponent },
+  { path: "login", component: LoginComponent },
+  { path: "shop", component: ShopComponent },
+  { path: "viewItem", component: ViewItemComponent },
+  { path: "**", redirectTo: "" },
 ];
 
 @NgModule({
