@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import { ProductCrudService } from 'src/app/services/product-crud.service';
+import { CartCrudService } from 'src/app/services/cart-crud.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-view-item',
@@ -10,13 +13,33 @@ import { ProductCrudService } from 'src/app/services/product-crud.service';
 })
 export class ViewItemComponent implements OnInit {
   currItem$: Product;
-  constructor(private productCrudService: ProductCrudService, private router: Router) { }
+  loggedInUser$: User;
+  facilitatorForm: FormGroup;
+  constructor(private productCrudService: ProductCrudService, private cartCrudService: CartCrudService, private router: Router) { }
 
   ngOnInit(): void {
     this.currItem$ = JSON.parse(sessionStorage.getItem('currentItem'));
+    this.loggedInUser$ = JSON.parse(sessionStorage.getItem('currentUser'));
     this.productStuff();
+    this.facilitatorForm = this.createFormGroup();
   }
 
+  createFormGroup(): FormGroup {
+    return new FormGroup({
+      id: new FormControl(this.loggedInUser$.id, [Validators.required]),
+      pid: new FormControl(this.currItem$.pid, [Validators.required]),
+      product_name: new FormControl(this.currItem$.product_name, [Validators.required]),
+      picture: new FormControl(this.currItem$.picture),
+      price: new FormControl(this.currItem$.price)
+    });
+  }
+
+  post(): void {
+    console.log(this.facilitatorForm.value);
+    this.cartCrudService.post(this.facilitatorForm.value).subscribe();
+    this.router.navigate(["shop"]);
+
+  }
   productStuff(): void {
     console.log(this.currItem$);
     let myContainer = document.getElementById('productInfo') as HTMLElement;
