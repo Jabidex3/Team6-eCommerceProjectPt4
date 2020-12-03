@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "shop", component: ShopComponent },
   { path: "viewItem", component: ViewItemComponent },
+  { path: "inventory", component: ViewItemComponent}, // randomm temp
   { path: "**", redirectTo: "" },
 ];
 
