@@ -13,7 +13,11 @@ import { pluck } from 'rxjs/operators';
 export class ShopComponent implements OnInit {
   products$: Observable<Product[]>
   singleItem$: Observable<Product>;
-  constructor(private productCrudService: ProductCrudService, private router: Router) { }
+  profilePicture:string;
+  constructor(private productCrudService: ProductCrudService, private router: Router) 
+  {
+    
+  }
 
   ngOnInit(): void {
     this.singleItem$ = null

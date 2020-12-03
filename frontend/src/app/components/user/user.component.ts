@@ -12,12 +12,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UserComponent implements OnInit {
   loggedInUser$:User;
   updateUserForm: FormGroup;
+  profilePicture:string;
   constructor(private userListCrudService:UserListCrudService,private router: Router) { }
 
   ngOnInit(): void {
     this.loggedInUser$=JSON.parse(sessionStorage.getItem('currentUser'));
     this.updateUserForm = this.createFormGroup();
     this.userName();
+    this.profilePicture = this.loggedInUser$.picture;
   }
 
   createFormGroup():FormGroup{

@@ -5,7 +5,7 @@
         <span class="navbarItem">
 
             <span class="userName">
-                <img src="" alt="pfp" />
+                <img class="user" [src]="profilePicture" width="70" height="70" />
                 Sample Name
                 <!-- {{ sessionStorage.getItem('currentUser').email }} -->
             </span>
@@ -129,19 +129,23 @@
         <table class="basicTable">
             <thead>
                 <tr>
-                    <td>heading 1</td>
-                    <td>heading 2</td>
-                    <td>heading 3</td>
+                    <th>Product Id</th>
+                    <th>Product Picture</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>View</th>
                 </tr>
             </thead>
-
-            <tr *ngFor="let user of users$ | async">
-                <td>{{user.id}}</td>
-                <td>{{user.email}}</td>
-                <td><button mat-icon-button color="warn">
-                        <mat-icon (click)="delete(user.id)">delete</mat-icon>
-                    </button>
-                </td>
+            <tr *ngFor="let product of products$ | async">
+                <td>{{product.pid}}</td>
+                <td><img class="product" [src]="product.picture" width="70" height="70" /></td>
+                <td>{{product.product_name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.price}}</td>
+                <td><button mat-icon-button color="primary">
+                        <mat-icon (click)="viewProduct(product.pid)">info</mat-icon>
+                    </button></td>
             </tr>
         </table>
     </div>
@@ -157,6 +161,7 @@
             <thead>
                 <tr>
                     <td>User Id</td>
+                    <td>User Picture</td>
                     <td>User Email</td>
                     <td>Delete</td>
                 </tr>
@@ -164,6 +169,7 @@
 
             <tr *ngFor="let user of users$ | async">
                 <td>{{user.id}}</td>
+                <td><img class="user" [src]="user.picture" width="70" height="70" /></td>
                 <td>{{user.email}}</td>
                 <td><button mat-icon-button color="warn">
                         <mat-icon (click)="delete(user.id)">delete</mat-icon>

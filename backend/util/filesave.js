@@ -18,7 +18,7 @@ module.exports = class FileSave{
             {
             }
         });
-        db.execute('update user set picture = ? where id = ?', [pictureName, user.id]);
+        db.execute('update user set picture = ? where id = ?', [pictureName, userId]);
     }
     static saveProductPicture(data,name){
         // creates name for picture based off of user id, then shaves off leading data. saves picture using fs then updates the database path

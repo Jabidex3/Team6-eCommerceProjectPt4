@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
+import { Product } from 'src/app/models/Product';
 import { UserListCrudService } from 'src/app/services/user-list-crud.service';
+import { ProductCrudService } from 'src/app/services/product-crud.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { stringify } from 'querystring';
 import { Router } from '@angular/router';
@@ -13,13 +15,19 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   newUserForm: FormGroup;
-
-  users$:Observable<User[]>
-  constructor(private userListCrudService:UserListCrudService,private router: Router) { }
+  profilePicture:string;
+  currAdmin$:User;
+  users$:Observable<User[]>;
+  products$: Observable<Product[]>;
+  constructor(private userListCrudService:UserListCrudService,private productCrudService: ProductCrudService, private router: Router) {
+    this.currAdmin$ = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.profilePicture =  this.currAdmin$.picture;
+   }
 
   ngOnInit(): void {
     this.users$ = this.userListCrudService.fetchAll()
     this.newUserForm = this.createFormGroup();
+    this.products$ = this.productCrudService.fetchAll();
   }
 
   createFormGroup():FormGroup{
