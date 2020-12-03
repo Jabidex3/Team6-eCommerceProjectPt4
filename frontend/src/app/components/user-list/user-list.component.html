@@ -1,11 +1,48 @@
 <mat-toolbar>
     <span>Ecommerce Application V1</span>
     <span>
-        <!-- <a routerLink="/">Home</a> -->
 
-        <a routerLink="/admin">Admin</a>
+        <span class="navbarItem">
 
-        <a (click)="deleteSessionUserInfo()" routerLink="/login">Logout</a>
+            <span class="userName">
+                <img src="" alt="pfp" />
+                Sample Name
+                <!-- {{ sessionStorage.getItem('currentUser').email }} -->
+            </span>
+
+        </span>
+
+        <span class="navbarItem">
+
+            <span class="menuWrapper">
+                <button mat-button [matMenuTriggerFor]="menu" class="navbarMenu">
+                    <mat-icon>menu</mat-icon>
+                    Menu
+                </button>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/admin">
+                        <mat-icon>dashboard</mat-icon>
+                        Dashboard
+                    </button>
+
+                    <!-- <button mat-menu-item routerLink="">
+                <mat-icon></mat-icon>
+                Manage Products
+            </button> -->
+
+                    <button mat-menu-item routerLink="/user">
+                        <mat-icon>account_circle</mat-icon>
+                        User Profile
+                    </button>
+
+                    <button mat-menu-item (click)="deleteSessionUserInfo()" routerLink="/login">
+                        <mat-icon>power_settings_new</mat-icon>
+                        Log out
+                    </button>
+                </mat-menu>
+            </span>
+        </span>
     </span>
 </mat-toolbar>
 
@@ -23,6 +60,13 @@
 </div> -->
 <!-- <h1>Welcome {{localStorage.getItem('currentUser') }}</h1> -->
 <!-- style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;" -->
+
+<h1>Admin Dashboard</h1>
+<h3>Welcome, Name. What would you like to do today?</h3>
+
+<button class="adminBtn" routerLink="/inventory">
+    Manage Inventory
+</button>
 
 <button (click)="addUserfunc()" class="adminBtn">
     Add New User
