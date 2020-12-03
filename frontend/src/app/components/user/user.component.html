@@ -5,10 +5,11 @@
         <span class="navbarItem">
 
             <span class="userName">
-                <img src="" alt="pfp" />
+                <img class="user" [src]="profilePicture" width="70" height="70" />
                 Sample Name
                 <!-- {{ sessionStorage.getItem('currentUser').email }} -->
             </span>
+
 
         </span>
 
@@ -21,10 +22,7 @@
                 </button>
 
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item routerLink="/admin">
-                        <mat-icon>dashboard</mat-icon>
-                        Dashboard
-                    </button>
+
 
                     <!-- <button mat-menu-item routerLink="">
                 <mat-icon></mat-icon>
@@ -34,6 +32,14 @@
                     <button mat-menu-item routerLink="/user">
                         <mat-icon>account_circle</mat-icon>
                         User Profile
+                    </button>
+                    <button mat-menu-item routerLink="/shop">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                        Shop
+                    </button>
+                    <button mat-menu-item routerLink="/cart">
+                        <mat-icon>shopping_cart</mat-icon>
+                        Cart
                     </button>
 
                     <button mat-menu-item (click)="deleteSessionUserInfo()" routerLink="/login">
@@ -53,7 +59,8 @@
         <img [src]="profilePicture" width="70" height="70" />
 
         <a routerLink="/user">User</a>
-
+        <a routerLink="/shop">Shop</a>
+        <a routerLink="/cart">Cart</a>
         <a (click)="deleteSessionUserInfo()" routerLink="/login">Logout</a>
     </span>
 </mat-toolbar> -->
@@ -117,6 +124,3 @@
 
     </table>
 </form>
-
-<hr />
-<a routerLink="/shop">Shop</a>

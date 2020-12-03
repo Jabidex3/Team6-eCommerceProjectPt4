@@ -4,6 +4,7 @@ import { ProductCrudService } from 'src/app/services/product-crud.service';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import { pluck } from 'rxjs/operators';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-shop',
@@ -13,10 +14,11 @@ import { pluck } from 'rxjs/operators';
 export class ShopComponent implements OnInit {
   products$: Observable<Product[]>
   singleItem$: Observable<Product>;
-  profilePicture:string;
-  constructor(private productCrudService: ProductCrudService, private router: Router) 
-  {
-    
+  profilePicture: string;
+  currUser$: User;
+  constructor(private productCrudService: ProductCrudService, private router: Router) {
+    this.currUser$ = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.profilePicture = this.currUser$.picture;
   }
 
   ngOnInit(): void {
@@ -36,5 +38,9 @@ export class ShopComponent implements OnInit {
     }
 
     this.router.navigate(["viewItem"]);
+  }
+
+  deleteSessionUserInfo(): void {
+    sessionStorage.removeItem('currentUser');
   }
 }

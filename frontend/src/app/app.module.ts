@@ -23,6 +23,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserComponent } from './components/user/user.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { ViewItemComponent } from './components/view-item/view-item.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ViewItemComponent } from './components/view-item/view-item.component';
     UserComponent,
     ShopComponent,
     ViewItemComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

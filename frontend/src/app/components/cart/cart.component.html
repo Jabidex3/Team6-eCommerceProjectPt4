@@ -4,7 +4,6 @@
 
         <span class="navbarItem">
 
-
             <span class="userName">
                 <img class="user" [src]="profilePicture" width="70" height="70" />
                 Sample Name
@@ -51,27 +50,25 @@
         </span>
     </span>
 </mat-toolbar>
+<br>
 
-<div>
-    <h1 style="text-align: center;">Product List</h1>
-    <table style="width: 50%; margin: auto; text-align: center;" border=1>
+<table class="basicTable">
+    <thead>
         <tr>
-            <th>Product Id</th>
-            <th>Product Picture</th>
-            <th>Product Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>View</th>
+            <td>Image</td>
+            <td>Product Name</td>
+            <td>Price</td>
+            <td>Action</td>
         </tr>
-        <tr *ngFor="let product of products$ | async">
-            <td>{{product.pid}}</td>
-            <td><img class="product" [src]="product.picture" width="70" height="70" /></td>
-            <td>{{product.product_name}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.price}}</td>
-            <td><button mat-icon-button color="primary">
-                    <mat-icon (click)="viewProduct(product.pid)">info</mat-icon>
-                </button></td>
-        </tr>
-    </table>
-</div>
+    </thead>
+
+    <tr *ngFor="let c of cartItems$ | async">
+        <td><img class="product" [src]="c.picture" width="70" height="70" /></td>
+        <td>{{c.product_name}}</td>
+        <td>{{c.price}}</td>
+        <td><button mat-icon-button color="warn">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </tr>
+</table>
