@@ -21,10 +21,7 @@
                 </button>
 
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item routerLink="/admin">
-                        <mat-icon>dashboard</mat-icon>
-                        Dashboard
-                    </button>
+
 
                     <!-- <button mat-menu-item routerLink="">
                 <mat-icon></mat-icon>
@@ -35,12 +32,16 @@
                         <mat-icon>account_circle</mat-icon>
                         User Profile
                     </button>
+                    <button mat-menu-item routerLink="/shop">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                        Shop
+                    </button>
+                    <button mat-menu-item routerLink="/cart">
+                        <mat-icon>shopping_cart</mat-icon>
+                        Cart
+                    </button>
 
-                    <!-- currently taken out so app can render
-                        paste this back in after finish building view item component:
-                    (click)="deleteSessionUserInfo()"
-                -->
-                    <button mat-menu-item routerLink="/login">
+                    <button mat-menu-item (click)="deleteSessionUserInfo()" routerLink="/login">
                         <mat-icon>power_settings_new</mat-icon>
                         Log out
                     </button>

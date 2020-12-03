@@ -57,5 +57,8 @@ export class ViewItemComponent implements OnInit {
   addToCart(): void {
     console.log(this.currItem$);
   }
-
+  deleteSessionUserInfo(): void {
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentItem');
+  }
 }
