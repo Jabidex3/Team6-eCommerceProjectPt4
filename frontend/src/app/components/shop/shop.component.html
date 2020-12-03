@@ -55,6 +55,7 @@
     <table style="width: 50%; margin: auto; text-align: center;" border=1>
         <tr>
             <th>Product Id</th>
+            <th>Product Picture</th>
             <th>Product Name</th>
             <th>Description</th>
             <th>Price</th>
@@ -62,6 +63,7 @@
         </tr>
         <tr *ngFor="let product of products$ | async">
             <td>{{product.pid}}</td>
+            <td><img [src]="product.picture" width="70" height="70" /></td>
             <td>{{product.product_name}}</td>
             <td>{{product.description}}</td>
             <td>{{product.price}}</td>

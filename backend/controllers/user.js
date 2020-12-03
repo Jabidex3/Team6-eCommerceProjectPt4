@@ -122,7 +122,7 @@ exports.putPicture = async (req, res, next) => {
     try {
         console.log(id);
         //console.log(picture);
-        FileSave.savePicture(id,picture);
+        FileSave.saveUserPicture(id,picture);
         res.send("OK").status(200);
     } catch (error) {
         console.log('ERROR:  ' + error);
