@@ -8,10 +8,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class AdminComponent implements OnInit {
   newUserForm: FormGroup;
 
   users$:Observable<User[]>
@@ -112,6 +112,11 @@ export class UserListComponent implements OnInit {
       this.showUser=false;
     }
     
+  }
+
+  showProducts:boolean=false;
+  showProductsfunc() {
+    this.showProducts = (!this.showProducts) ? true : false;
   }
   
   delete(id:number):void{

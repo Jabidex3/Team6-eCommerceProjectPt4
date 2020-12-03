@@ -64,8 +64,12 @@
 <h1>Admin Dashboard</h1>
 <h3>Welcome, Name. What would you like to do today?</h3>
 
-<button class="adminBtn" routerLink="/inventory">
-    Manage Inventory
+<button (click)="showProductsfunc()" class="adminBtn">
+    Show/Hide Inventory
+</button>
+
+<button (click)="showUserfunc()" class="adminBtn">
+    Show/Hide User List
 </button>
 
 <button (click)="addUserfunc()" class="adminBtn">
@@ -108,12 +112,41 @@
 
 </form>
 
-<hr />
 <!-- <div #testerOne *ngIf="div1" style="background-color: blue;">Hi</div>
 <button (click)="div1func()"> test</button> -->
-<button (click)="showUserfunc()" class="adminBtn">
-    Show/Hide User List
-</button>
+
+
+<div *ngIf="showProducts">
+
+    <h1>Products List</h1>
+
+    <div class="wrapTable">
+
+        <!-- TO DO
+            headings
+            table row content
+        -->
+        <table class="basicTable">
+            <thead>
+                <tr>
+                    <td>heading 1</td>
+                    <td>heading 2</td>
+                    <td>heading 3</td>
+                </tr>
+            </thead>
+
+            <tr *ngFor="let user of users$ | async">
+                <td>{{user.id}}</td>
+                <td>{{user.email}}</td>
+                <td><button mat-icon-button color="warn">
+                        <mat-icon (click)="delete(user.id)">delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 
 <div *ngIf="showUser">
     <h1>User List</h1>

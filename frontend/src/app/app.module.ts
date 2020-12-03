@@ -15,7 +15,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from "@angular/material/menu";
 
-import { UserListComponent } from './components/user-list/user-list.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -27,14 +27,14 @@ import { ViewItemComponent } from './components/view-item/view-item.component';
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
+    AdminComponent,
     SignupComponent,
     LoginComponent,
     HomeComponent,
     NavbarComponent,
     UserComponent,
     ShopComponent,
-    ViewItemComponent
+    ViewItemComponent,
   ],
   imports: [
     BrowserModule,
