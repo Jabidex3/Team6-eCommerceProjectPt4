@@ -3,7 +3,7 @@
 
 <div class="formContainer">
 
-    <form [formGroup]="loginForm" (ngSubmit)="checkUser()" novalidate class="authForm">
+    <form [formGroup]="loginForm" (ngSubmit)="checkUser()" novalidate class="centerForm">
         <mat-form-field appearance="fill" class="inputField">
             <mat-label>Email</mat-label>
             <input #emailInp matInput placeholder="example@gmail.com" formControlName="email" />
@@ -28,6 +28,10 @@
         </span>
 
     </form>
+
+    <div class="loginRegister">
+        <p>Don't have an account? <a routerLink="/register">Create one today!</a></p>
+    </div>
 
     <div class="error">
         <div #unsuccessLogin *ngIf="div1">

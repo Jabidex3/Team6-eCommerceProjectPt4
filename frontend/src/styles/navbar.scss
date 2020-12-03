@@ -5,15 +5,64 @@ mat-toolbar{
     color: $gray !important;
     //padding: 0 50px;
 
+    & > .adminRegisterTabs {
+        height: 64px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding:  10px;
+        top: 0;
+    }
+
     a {
         color: $gray;
         text-decoration: none;
         margin-left: 20px;
-        //border: 1px;
+        border: 1px solid white;
+        // height: 100%;
+        padding: 0 15px;
     }
 
     a:hover {
-        color: $gray-hover;
+        background-color: $navyblue-hover !important;
+    }    
+}
+
+
+@mixin navElement {
+    top: 0;
+    height: 64px !important;
+    right: 0;
+    padding: 0 10px;
+}
+
+// Seen in the navbar rendered once logged in
+.navbarItem {
+
+    .userName {
+        @include navElement;
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 15px;
+    }
+
+    .menuWrapper {
+        @include navElement;
+        float: right;
+
+        & > button {
+            height: 100%;
+            font-size: 20px;
+        }
+
+        &:hover {
+            background-color: $navyblue-hover;
+        }
     }
     
+    &UserName > img {
+        border-radius: 50%;   
+    }  
 }

@@ -1,3 +1,56 @@
+<mat-toolbar>
+    <span>Ecommerce Application V1</span>
+    <span>
+
+        <span class="navbarItem">
+
+            <span class="userName">
+                <img src="" alt="pfp" />
+                Sample Name
+                <!-- {{ sessionStorage.getItem('currentUser').email }} -->
+            </span>
+
+        </span>
+
+        <span class="navbarItem">
+
+            <span class="menuWrapper">
+                <button mat-button [matMenuTriggerFor]="menu" class="navbarMenu">
+                    <mat-icon>menu</mat-icon>
+                    Menu
+                </button>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/admin">
+                        <mat-icon>dashboard</mat-icon>
+                        Dashboard
+                    </button>
+
+                    <!-- <button mat-menu-item routerLink="">
+                <mat-icon></mat-icon>
+                Manage Products
+            </button> -->
+
+                    <button mat-menu-item routerLink="/user">
+                        <mat-icon>account_circle</mat-icon>
+                        User Profile
+                    </button>
+
+                    <!-- currently taken out so app can render
+                        paste this back in after finish building view item component:
+                    (click)="deleteSessionUserInfo()"
+                -->
+                    <button mat-menu-item routerLink="/login">
+                        <mat-icon>power_settings_new</mat-icon>
+                        Log out
+                    </button>
+                </mat-menu>
+            </span>
+        </span>
+    </span>
+</mat-toolbar>
+
+
 <div style="margin-top: 10px" id="productInfo"></div>
 <button (click)="cancel()">
     Cancel

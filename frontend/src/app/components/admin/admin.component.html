@@ -1,0 +1,194 @@
+<mat-toolbar>
+    <span>Ecommerce Application V1</span>
+    <span>
+
+        <span class="navbarItem">
+
+            <span class="userName">
+                <img src="" alt="pfp" />
+                Sample Name
+                <!-- {{ sessionStorage.getItem('currentUser').email }} -->
+            </span>
+
+        </span>
+
+        <span class="navbarItem">
+
+            <span class="menuWrapper">
+                <button mat-button [matMenuTriggerFor]="menu" class="navbarMenu">
+                    <mat-icon>menu</mat-icon>
+                    Menu
+                </button>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/admin">
+                        <mat-icon>dashboard</mat-icon>
+                        Dashboard
+                    </button>
+
+                    <!-- <button mat-menu-item routerLink="">
+                <mat-icon></mat-icon>
+                Manage Products
+            </button> -->
+
+                    <button mat-menu-item routerLink="/user">
+                        <mat-icon>account_circle</mat-icon>
+                        User Profile
+                    </button>
+
+                    <button mat-menu-item (click)="deleteSessionUserInfo()" routerLink="/login">
+                        <mat-icon>power_settings_new</mat-icon>
+                        Log out
+                    </button>
+                </mat-menu>
+            </span>
+        </span>
+    </span>
+</mat-toolbar>
+
+<!-- <div style="width: 40%; margin: auto; ">
+    <mat-form-field style="width: 30%;margin: 2%;">
+        <input #emailInp matInput placeholder="example@gmail.com" />
+    </mat-form-field>
+    <mat-form-field style="width: 30%;margin: 2%;">
+        <input #pwInp matInput placeholder="password" />
+    </mat-form-field>
+    <button (click) ="post(emailInp.value,pwInp.value)" color="primary">
+        Add User
+    </button>
+    
+</div> -->
+<!-- <h1>Welcome {{localStorage.getItem('currentUser') }}</h1> -->
+<!-- style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;" -->
+
+<h1>Admin Dashboard</h1>
+<h3>Welcome, Name. What would you like to do today?</h3>
+
+<button (click)="showProductsfunc()" class="adminBtn">
+    Show/Hide Inventory
+</button>
+
+<button (click)="showUserfunc()" class="adminBtn">
+    Show/Hide User List
+</button>
+
+<button (click)="addUserfunc()" class="adminBtn">
+    Add New User
+</button>
+
+<form [formGroup]="newUserForm" (ngSubmit)="post()" novalidate *ngIf="addUser" class="centerForm">
+    <h1>Add a New User:</h1>
+
+    <mat-form-field class="inputField-sm">
+        <mat-label>Email</mat-label>
+        <input #emailInp matInput placeholder="example@gmail.com" formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field class="inputField-sm">
+        <mat-label>Password</mat-label>
+        <input #pwInp matInput placeholder="password" formControlName="password" />
+    </mat-form-field>
+
+    <mat-form-field class="inputField-sm">
+        <mat-label>Role</mat-label>
+        <input #roleInp matInput placeholder="user or admin" formControlName="role" />
+    </mat-form-field>
+
+    <button class="adminBtn" type="submit">
+        Add user
+    </button>
+
+    <div class="error">
+        <div #unsuccessPost *ngIf="div1">
+            Invalid Inputs! Try Again!
+        </div>
+    </div>
+
+    <div class="success">
+        <div #successPost *ngIf="div2">
+            You have successfully created the new user!
+        </div>
+    </div>
+
+</form>
+
+<!-- <div #testerOne *ngIf="div1" style="background-color: blue;">Hi</div>
+<button (click)="div1func()"> test</button> -->
+
+
+<div *ngIf="showProducts">
+
+    <h1>Products List</h1>
+
+    <div class="wrapTable">
+
+        <!-- TO DO
+            headings
+            table row content
+        -->
+        <table class="basicTable">
+            <thead>
+                <tr>
+                    <td>heading 1</td>
+                    <td>heading 2</td>
+                    <td>heading 3</td>
+                </tr>
+            </thead>
+
+            <tr *ngFor="let user of users$ | async">
+                <td>{{user.id}}</td>
+                <td>{{user.email}}</td>
+                <td><button mat-icon-button color="warn">
+                        <mat-icon (click)="delete(user.id)">delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div *ngIf="showUser">
+    <h1>User List</h1>
+
+    <div class="wrapTable">
+
+        <table class="basicTable">
+            <thead>
+                <tr>
+                    <td>User Id</td>
+                    <td>User Email</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+
+            <tr *ngFor="let user of users$ | async">
+                <td>{{user.id}}</td>
+                <td>{{user.email}}</td>
+                <td><button mat-icon-button color="warn">
+                        <mat-icon (click)="delete(user.id)">delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<!-- <mat-card style="width: 50%; margin: auto;">
+
+
+    <mat-list>
+        
+        <mat-list-item *ngFor="let user of users$ | async">
+            <span style="font-weight: bold;">{{user.id}}. {{user.email}} {{user.password}}</span>
+            <span style="position: absolute; right: 0;">
+                <button mat-icon-button color="primary">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </span>
+        </mat-list-item>
+    </mat-list>
+</mat-card> -->
