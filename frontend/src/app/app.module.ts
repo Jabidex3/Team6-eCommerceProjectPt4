@@ -36,10 +36,7 @@ import { CartComponent } from './components/cart/cart.component';
     UserComponent,
     ShopComponent,
     ViewItemComponent,
-<<<<<<< HEAD
-=======
     CartComponent
->>>>>>> 54bbdb4... added cart component
   ],
   imports: [
     BrowserModule,

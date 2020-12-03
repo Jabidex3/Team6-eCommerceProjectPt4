@@ -17,11 +17,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "shop", component: ShopComponent },
   { path: "viewItem", component: ViewItemComponent },
-<<<<<<< HEAD
-  { path: "user", component: UserComponent},
-=======
+  { path: "user", component: UserComponent },
   { path: "cart", component: CartComponent },
->>>>>>> 54bbdb4... added cart component
   { path: "**", redirectTo: "" },
 ];
 
