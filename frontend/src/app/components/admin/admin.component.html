@@ -142,7 +142,7 @@
                 <td><img class="product" [src]="product.picture" width="70" height="70" /></td>
                 <td>{{product.product_name}}</td>
                 <td>{{product.description}}</td>
-                <td>{{product.price}}</td>
+                <td>${{product.price.toFixed(2)}}</td>
                 <td><button mat-icon-button color="primary">
                         <mat-icon (click)="viewProduct(product.pid)">info</mat-icon>
                     </button></td>
@@ -160,10 +160,10 @@
         <table class="basicTable">
             <thead>
                 <tr>
-                    <td>User Id</td>
-                    <td>User Picture</td>
-                    <td>User Email</td>
-                    <td>Delete</td>
+                    <th>User Id</th>
+                    <th>User Picture</th>
+                    <th>User Email</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
 
