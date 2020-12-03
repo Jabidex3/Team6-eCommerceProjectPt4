@@ -15,11 +15,13 @@ export class ViewItemComponent implements OnInit {
   currItem$: Product;
   loggedInUser$: User;
   facilitatorForm: FormGroup;
+  profilePicture: string;
   constructor(private productCrudService: ProductCrudService, private cartCrudService: CartCrudService, private router: Router) { }
 
   ngOnInit(): void {
     this.currItem$ = JSON.parse(sessionStorage.getItem('currentItem'));
     this.loggedInUser$ = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.profilePicture = this.loggedInUser$.picture;
     this.productStuff();
     this.facilitatorForm = this.createFormGroup();
   }

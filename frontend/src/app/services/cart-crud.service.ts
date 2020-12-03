@@ -10,7 +10,7 @@ import { catchError, first, tap } from 'rxjs/operators';
 })
 export class CartCrudService {
   private url = "http://localhost:3000/user/cart";
-  // private url2 = "http://localhost:3000/user//user/cart/:id";
+
 
   httpOptions: { headers: HttpHeaders } = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -21,7 +21,9 @@ export class CartCrudService {
     return this.http.post<Cart>(this.url, cart, this.httpOptions).pipe(first());
   }
 
-  fetchAll(): Observable<Cart[]> {
-    return this.http.get<Cart[]>(this.url, { responseType: "json" });//.pipe(tap((_)=>console.log("fetched users")));
+  fetchAll(id: number): Observable<Cart[]> {
+    const url2 = `http://localhost:3000/user/cart/${id}`;
+    console.log(url2)
+    return this.http.get<Cart[]>(url2, { responseType: "json" });//.pipe(tap((_)=>console.log("fetched users")));
   }
 }

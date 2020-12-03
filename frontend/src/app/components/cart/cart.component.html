@@ -5,7 +5,7 @@
         <span class="navbarItem">
 
             <span class="userName">
-                <img src="" alt="pfp" />
+                <img class="user" [src]="profilePicture" width="70" height="70" />
                 Sample Name
                 <!-- {{ sessionStorage.getItem('currentUser').email }} -->
             </span>
@@ -50,5 +50,25 @@
         </span>
     </span>
 </mat-toolbar>
+<br>
 
-<p>cart works!</p>
+<table class="basicTable">
+    <thead>
+        <tr>
+            <td>Image</td>
+            <td>Product Name</td>
+            <td>Price</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+
+    <tr *ngFor="let c of cartItems$ | async">
+        <td><img class="product" [src]="c.picture" width="70" height="70" /></td>
+        <td>{{c.product_name}}</td>
+        <td>{{c.price}}</td>
+        <td><button mat-icon-button color="warn">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </tr>
+</table>

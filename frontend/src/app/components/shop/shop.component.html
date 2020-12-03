@@ -4,8 +4,9 @@
 
         <span class="navbarItem">
 
+
             <span class="userName">
-                <img src="" alt="pfp" />
+                <img class="user" [src]="profilePicture" width="70" height="70" />
                 Sample Name
                 <!-- {{ sessionStorage.getItem('currentUser').email }} -->
             </span>
@@ -64,7 +65,7 @@
         </tr>
         <tr *ngFor="let product of products$ | async">
             <td>{{product.pid}}</td>
-            <td><img [src]="product.picture" width="70" height="70" /></td>
+            <td><img class="product" [src]="product.picture" width="70" height="70" /></td>
             <td>{{product.product_name}}</td>
             <td>{{product.description}}</td>
             <td>{{product.price}}</td>
