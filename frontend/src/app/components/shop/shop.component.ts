@@ -37,4 +37,8 @@ export class ShopComponent implements OnInit {
 
     this.router.navigate(["viewItem"]);
   }
+
+  deleteSessionUserInfo(): void {
+    sessionStorage.removeItem('currentUser');
+  }
 }
