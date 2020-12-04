@@ -14,6 +14,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from "@angular/material/menu";
+import {MatRadioModule} from '@angular/material/radio';
 
 import { AdminComponent } from './components/admin/admin.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -48,7 +49,8 @@ import { ViewItemComponent } from './components/view-item/view-item.component';
     MatListModule,
     MatToolbarModule,
     ReactiveFormsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

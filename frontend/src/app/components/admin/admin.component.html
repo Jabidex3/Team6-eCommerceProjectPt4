@@ -89,10 +89,14 @@
         <input #pwInp matInput placeholder="password" formControlName="password" />
     </mat-form-field>
 
-    <mat-form-field class="inputField-sm">
+    <mat-radio-group #roleInp aria-label="Select an option" formControlName="role">
+        <mat-radio-button value="admin">Admin</mat-radio-button>
+        <mat-radio-button value="user">User</mat-radio-button>
+    </mat-radio-group>
+    <!-- <mat-form-field class="inputField-sm">
         <mat-label>Role</mat-label>
         <input #roleInp matInput placeholder="user or admin" formControlName="role" />
-    </mat-form-field>
+    </mat-form-field> -->
 
     <button class="adminBtn" type="submit">
         Add user
@@ -163,6 +167,7 @@
                     <th>User Id</th>
                     <th>User Picture</th>
                     <th>User Email</th>
+                    <th>Role</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -171,6 +176,7 @@
                 <td>{{user.id}}</td>
                 <td><img class="user" [src]="user.picture" width="70" height="70" /></td>
                 <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
                 <td><button mat-icon-button color="warn">
                         <mat-icon (click)="delete(user.id)">delete</mat-icon>
                     </button>
