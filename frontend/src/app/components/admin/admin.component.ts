@@ -57,12 +57,11 @@ export class AdminComponent implements OnInit {
   post():void{
     const inpOne = this.newUserForm.controls['email'].value.trim()
     const inpTwo = this.newUserForm.controls['password'].value.trim()
-    const inpThree = this.newUserForm.controls['role'].value.trim()
+    const inpThree = this.newUserForm.controls['role'].value
 
     if(!inpOne || !inpTwo || !inpThree){
       return;
     }
-
     if(inpThree.toLowerCase() === "user" || inpThree.toLowerCase() === "admin"){
       console.log(this.newUserForm.value);
       console.log(inpOne);
