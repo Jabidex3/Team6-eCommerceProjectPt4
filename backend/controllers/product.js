@@ -6,9 +6,9 @@ var fsp = require('fs').promises;
 exports.getAllProducts = async (req, res, next) => {
     try {
         const [allProducts] = await Product.fetchAll();
-        // for (var product of allProducts) {
-        //     product.picture =  "data:image/jpeg;base64," + await fsp.readFile("../backend/assets/products/"+product.picture, 'base64');
-        // }
+        for (var product of allProducts) {
+            product.picture =  "data:image/jpeg;base64," + await fsp.readFile("../backend/assets/products/"+product.picture, 'base64');
+        }
         res.status(200).json(allProducts);
     } catch {
         console.log('Error');

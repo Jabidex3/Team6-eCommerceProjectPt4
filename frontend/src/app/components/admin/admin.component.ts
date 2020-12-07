@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   newUserForm: FormGroup;
+  newProductForm: FormGroup;
   profilePicture:string;
   currAdmin$:User;
   users$:Observable<User[]>;
@@ -27,6 +28,7 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.users$ = this.userListCrudService.fetchAll()
     this.newUserForm = this.createFormGroup();
+    this.newProductForm = this.createProductFormGroup();
     this.products$ = this.productCrudService.fetchAll();
   }
 
@@ -38,7 +40,15 @@ export class AdminComponent implements OnInit {
       //, role: new FormControl("user")
     });
   }
-
+  createProductFormGroup():FormGroup{
+    return new FormGroup({
+      product_name: new FormControl("",[Validators.required]),
+      description: new FormControl("",[Validators.required]),
+      price: new FormControl("",[Validators.required]),
+      picture: new FormControl("",[Validators.required])
+     
+    });
+  }
   // post(email: String, password:String):void{
   //   const inpOne = email.trim();
   //   const inpTwo = password.trim();
@@ -143,4 +153,38 @@ export class AdminComponent implements OnInit {
   deleteSessionUserInfo():void{
     sessionStorage.removeItem('currentUser');
   }
+  addProduct:boolean = false;
+  toggleAddProduct(){
+    if(this.addProduct==false){
+      this.addProduct=true;
+    }
+    else{
+      this.addProduct=false;
+    }
+    
+  }
+  public onFileChange(event) {
+    const reader = new FileReader();
+ 
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+     
+      reader.onload = () => {
+        this.newProductForm.patchValue({
+          picture: reader.result
+        });
+      };
+    }
+  }
+ 
+  postProduct()
+  {
+    let inpOne = this.newProductForm.controls['product_name'].value.trim();
+    let inpTwo = this.newProductForm.controls['description'].value.trim();
+    let inpFour = this.newProductForm.controls['price'].value;
+    let inpFile = this.newProductForm.controls['picture'].value;
+    this.productCrudService.postProduct(this.newProductForm.value).subscribe();
+  }
+
 }
