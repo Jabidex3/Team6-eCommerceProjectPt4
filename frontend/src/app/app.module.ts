@@ -25,6 +25,7 @@ import { UserComponent } from './components/user/user.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { ViewItemComponent } from './components/view-item/view-item.component';
 import { CartComponent } from './components/cart/cart.component';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CartComponent } from './components/cart/cart.component';
     UserComponent,
     ShopComponent,
     ViewItemComponent,
-    CartComponent
+    CartComponent,
+    AdminProfileComponent
   ],
   imports: [
     BrowserModule,

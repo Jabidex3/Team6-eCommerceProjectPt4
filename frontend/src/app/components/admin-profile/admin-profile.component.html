@@ -1,0 +1,91 @@
+<mat-toolbar>
+    <span>Ecommerce Application V1</span>
+    <span>
+
+        <span class="navbarItem">
+
+            <span class="userName">
+                <img class="user" [src]="profilePicture" width="70" height="70" />
+                {{this.currAdmin$.email}}
+            </span>
+
+        </span>
+
+        <span class="navbarItem">
+
+            <span class="menuWrapper">
+                <button mat-button [matMenuTriggerFor]="menu" class="navbarMenu">
+                    <mat-icon>menu</mat-icon>
+                    Menu
+                </button>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/admin">
+                        <mat-icon>dashboard</mat-icon>
+                        Dashboard
+                    </button>
+
+                    <button mat-menu-item routerLink="/adminprofile">
+                        <mat-icon>account_circle</mat-icon>
+                        Admin Profile
+                    </button>
+
+                    <button mat-menu-item (click)="deleteSessionUserInfo()" routerLink="/login">
+                        <mat-icon>power_settings_new</mat-icon>
+                        Log out
+                    </button>
+                </mat-menu>
+            </span>
+        </span>
+    </span>
+</mat-toolbar>
+
+<div class="centerDiv">
+    <h1>Admin Profile</h1>
+    <p id="hiName"></p>
+    <p>View and edit your information below </p>
+</div>
+
+<br />
+
+<form [formGroup]="updateUserForm" (ngSubmit)="update()" novalidate class="centerForm">
+
+    <div class="flex-container">
+        <div class="left">
+
+            <mat-form-field class="inputField-med">
+                <mat-label>User ID</mat-label>
+                <input #idInp matInput formControlName="id" />
+            </mat-form-field>
+
+            <mat-form-field class="inputField-med">
+                <mat-label>Email</mat-label>
+                <input #emailInp matInput formControlName="email" />
+            </mat-form-field>
+
+            <mat-form-field class="inputField-med">
+                <mat-label>Password</mat-label>
+                <input #pwInp matInput formControlName="password" />
+            </mat-form-field>
+
+            <mat-radio-group formControlName="role" disabled>
+                <mat-radio-button value="admin" checked>Admin</mat-radio-button>
+                <mat-radio-button value="user">User</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="right">
+            <div style="color: red">Picture uploading will go here</div>
+        </div>
+    </div>
+
+    <span>
+        <button class="adminBtn" type="submit">
+            <span>Update user</span>
+        </button>
+
+        <button class="cancelBtn" routerLink="/admin">
+            Cancel
+        </button>
+    </span>
+</form>
