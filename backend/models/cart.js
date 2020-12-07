@@ -21,4 +21,12 @@ module.exports = class Cart {
         // console.log(password);
         return db.execute('Insert into cart (id, pid, product_name, picture, price) Values (?,?,?,?,?)', [item.id, item.pid, item.product_name, item.picture, item.price]);
     }
+
+    static delete(cid) {
+        return db.execute('delete from cart where cid = ?', [cid]);
+    }
+
+    static numItemInCart(cartItems) {
+        return db.execute('SELECT COUNT(*) as records FROM cart where id=?', [cartItems.id]);
+    }
 };

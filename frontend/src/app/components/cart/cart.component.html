@@ -51,24 +51,39 @@
     </span>
 </mat-toolbar>
 <br>
+<h1 style="text-align: center;">Cart</h1>
+<div *ngIf="emptyCartCheck">
+    <button (click)="emptyCart()">
+        Clear Cart
+    </button>
+    <button (click)="checkout()">
+        Checkout
+    </button>
+    <table class="basicTable" style="text-align: center;">
+        <thead>
+            <tr>
+                <td>Image</td>
+                <td>Product Name</td>
+                <td>Price</td>
+                <td>Action</td>
+            </tr>
+        </thead>
 
-<table class="basicTable">
-    <thead>
-        <tr>
-            <td>Image</td>
-            <td>Product Name</td>
-            <td>Price</td>
-            <td>Action</td>
+        <tr *ngFor="let c of cartItems$ | async">
+            <td><img class="product" [src]="c.picture" width="70" height="70" /></td>
+            <td>{{c.product_name}}</td>
+            <td>{{c.price}}</td>
+            <td><button mat-icon-button color="warn">
+                    <mat-icon (click)="delete(c.cid)">delete</mat-icon>
+                </button>
+            </td>
         </tr>
-    </thead>
+    </table>
+</div>
 
-    <tr *ngFor="let c of cartItems$ | async">
-        <td><img class="product" [src]="c.picture" width="70" height="70" /></td>
-        <td>{{c.product_name}}</td>
-        <td>{{c.price}}</td>
-        <td><button mat-icon-button color="warn">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </td>
-    </tr>
-</table>
+<div *ngIf="defEmptyCart">
+    <p>
+        Your cart is empty!
+    </p>
+    <p><strong>Go add some furniture!</strong></p>
+</div>

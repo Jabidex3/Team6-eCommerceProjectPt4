@@ -23,5 +23,7 @@ router.put('/product', productController.putProduct)
 //Cart routes
 router.get('/user/cart/:id', cartController.getCart)
 router.post('/user/cart', cartController.addToCart)
+router.delete('/user/cart/:cid', cartController.deleteCartItem)
+router.get('/user/cart/items/:id', cartController.numItem)
 // router.get('/admin', userController.getAdmin)
 module.exports = router;
