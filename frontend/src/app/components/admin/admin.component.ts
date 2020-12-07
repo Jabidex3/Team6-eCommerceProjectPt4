@@ -113,10 +113,11 @@ export class AdminComponent implements OnInit {
   BTN_SHOW_PRODUCTS:string="showProducts";
   BTN_SHOW_USER:string = "showUser";
   BTN_ADD_USER:string="addUser";
+  BTN_ADD_PRODUCT:string="addProduct";
 
   displayDiv:boolean=false;
   addUser:boolean=false;
-  addUserfunc(){
+  toggleAddUser(){
     if(this.addUser==false){
       this.addUser=true;
     }
@@ -127,6 +128,8 @@ export class AdminComponent implements OnInit {
 
   /**
    * Changes the div rendered based on the arg
+   * Conditional statements are set up in the format:
+   *    if (current view toggled && next view clicked to toggle)
    * @arg String  value passed in from HTML button click
    */
   changeView(arg) {
@@ -141,9 +144,24 @@ export class AdminComponent implements OnInit {
       this.showProducts = (arg === this.BTN_ADD_USER) ? !this.showProducts : this.showProducts;
     }
 
+    else if (this.showProducts && this.addProduct) {
+      this.addProduct = (arg === this.BTN_SHOW_PRODUCTS) ? !this.addProduct : this.addProduct;
+      this.showProducts = (arg === this.BTN_ADD_PRODUCT) ? !this.showProducts : this.showProducts;
+    }
+
     else if (this.showUser && this.addUser) {
       this.addUser = (arg === this.BTN_SHOW_USER) ? !this.addUser : this.addUser;
       this.showUser = (arg === this.BTN_ADD_USER) ? !this.showUser : this.showUser;
+    }
+
+    else if (this.showUser && this.addProduct) {
+      this.addProduct = (arg === this.BTN_SHOW_USER) ? !this.addProduct : this.addProduct;
+      this.showUser = (arg === this.BTN_ADD_PRODUCT) ? !this.showUser : this.showUser;
+    }
+
+    else if (this.addUser && this.addProduct) {
+      this.addProduct = (arg === this.BTN_ADD_USER) ? !this.addProduct : this.addProduct;
+      this.addUser = (arg === this.BTN_ADD_PRODUCT) ? !this.addUser : this.addUser;
     }
   
   }
@@ -158,28 +176,32 @@ export class AdminComponent implements OnInit {
 
         // because of arg, one of these flags will be true and displays div
         if (arg === this.BTN_SHOW_USER) {
-          this.showUserfunc();
+          this.toggleShowUser();
         }
 
         else if (arg === this.BTN_ADD_USER) {
-          this.addUserfunc();
+          this.toggleAddUser();
         }
 
         else if (arg === this.BTN_SHOW_PRODUCTS) {
-          this.showProductsfunc();
+          this.toggleShowProducts();
+        }
+
+        else if (arg === this.BTN_ADD_PRODUCT) {
+          this.toggleAddProduct();
         }
 
         this.changeView(arg)
 
         // closes div element and makes it not visible
-        if (!this.showUser && !this.addUser &&!this.showProducts) {
+        if (!this.showUser && !this.addUser &&!this.showProducts && !this.addProduct) {
           this.displayDiv = false;
         }
     }
   }
 
   showUser:boolean=false;
-  showUserfunc(){
+  toggleShowUser(){
     if(this.showUser==false){
       this.showUser=true;
     }
@@ -189,7 +211,7 @@ export class AdminComponent implements OnInit {
   }
 
   showProducts:boolean=false;
-  showProductsfunc() {
+  toggleShowProducts() {
     this.showProducts = (!this.showProducts) ? true : false;
   }
   
