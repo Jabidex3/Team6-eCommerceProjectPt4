@@ -29,3 +29,7 @@
 .adminBtn {
     @include btnStyle($primary-color, $primary-color-hover)
 }
+
+.cancelBtn {
+    @include btnStyle($gray2, $gray2-hover);
+}

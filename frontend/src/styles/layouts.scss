@@ -1,0 +1,9 @@
+.flex-container {
+    display: flex;
+    width: 90%;
+
+    & > .left, & > .right {
+        flex: 1;
+        margin: 20px;
+    }
+}

@@ -15,6 +15,14 @@
     &-sm {
         width: 30%;
     }
+
+    &-med {
+        display: block !important;
+    }
+}
+
+mat-radio-button {
+    margin: 20px !important;
 }
 
 @mixin validationStyle ($status) {
