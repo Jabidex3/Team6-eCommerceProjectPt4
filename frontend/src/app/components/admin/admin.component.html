@@ -64,54 +64,59 @@
 <h1>Admin Dashboard</h1>
 <h3>Welcome, Name. What would you like to do today?</h3>
 
-<button (click)="showProductsfunc()" class="adminBtn">
+<button (click)="displayDivfunc('showProducts')" class="adminBtn">
     Show/Hide Inventory
 </button>
 
-<button (click)="showUserfunc()" class="adminBtn">
+<button (click)="displayDivfunc('showUser')" class="adminBtn">
     Show/Hide User List
 </button>
 
-<button (click)="addUserfunc()" class="adminBtn">
+<button (click)="displayDivfunc('addUser')" class="adminBtn">
     Add New User
 </button>
 
-<form [formGroup]="newUserForm" (ngSubmit)="post()" novalidate *ngIf="addUser" class="centerForm">
-    <h1>Add a New User:</h1>
+<div class="formContainer">
+    <form [formGroup]="newUserForm" (ngSubmit)="post()" novalidate *ngIf="addUser" class="centerForm">
+        <h1>Add a New User:</h1>
 
-    <mat-form-field class="inputField-sm">
-        <mat-label>Email</mat-label>
-        <input #emailInp matInput placeholder="example@gmail.com" formControlName="email" />
-    </mat-form-field>
+        <mat-form-field class="inputField-sm">
+            <mat-label>Email</mat-label>
+            <input #emailInp matInput placeholder="example@gmail.com" formControlName="email" />
+        </mat-form-field>
 
-    <mat-form-field class="inputField-sm">
-        <mat-label>Password</mat-label>
-        <input #pwInp matInput placeholder="password" formControlName="password" />
-    </mat-form-field>
+        <mat-form-field class="inputField-sm">
+            <mat-label>Password</mat-label>
+            <input #pwInp matInput placeholder="password" formControlName="password" />
+        </mat-form-field>
 
-    <mat-form-field class="inputField-sm">
+        <mat-radio-group #roleInp aria-label="Select an option" formControlName="role">
+            <mat-radio-button value="admin">Admin</mat-radio-button>
+            <mat-radio-button value="user">User</mat-radio-button>
+        </mat-radio-group>
+        <!-- <mat-form-field class="inputField-sm">
         <mat-label>Role</mat-label>
         <input #roleInp matInput placeholder="user or admin" formControlName="role" />
-    </mat-form-field>
+    </mat-form-field> -->
 
-    <button class="adminBtn" type="submit">
-        Add user
-    </button>
+        <button class="adminBtn" type="submit">
+            Add user
+        </button>
 
-    <div class="error">
-        <div #unsuccessPost *ngIf="div1">
-            Invalid Inputs! Try Again!
+        <div class="error">
+            <div #unsuccessPost *ngIf="div1">
+                Invalid Inputs! Try Again!
+            </div>
         </div>
-    </div>
 
-    <div class="success">
-        <div #successPost *ngIf="div2">
-            You have successfully created the new user!
+        <div class="success">
+            <div #successPost *ngIf="div2">
+                You have successfully created the new user!
+            </div>
         </div>
-    </div>
 
-</form>
-
+    </form>
+</div>
 <!-- <div #testerOne *ngIf="div1" style="background-color: blue;">Hi</div>
 <button (click)="div1func()"> test</button> -->
 
@@ -142,7 +147,7 @@
                 <td><img class="product" [src]="product.picture" width="70" height="70" /></td>
                 <td>{{product.product_name}}</td>
                 <td>{{product.description}}</td>
-                <td>{{product.price}}</td>
+                <td>${{product.price.toFixed(2)}}</td>
                 <td><button mat-icon-button color="primary">
                         <mat-icon (click)="viewProduct(product.pid)">info</mat-icon>
                     </button></td>
@@ -160,10 +165,11 @@
         <table class="basicTable">
             <thead>
                 <tr>
-                    <td>User Id</td>
-                    <td>User Picture</td>
-                    <td>User Email</td>
-                    <td>Delete</td>
+                    <th>User Id</th>
+                    <th>User Picture</th>
+                    <th>User Email</th>
+                    <th>Role</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
 
@@ -171,6 +177,7 @@
                 <td>{{user.id}}</td>
                 <td><img class="user" [src]="user.picture" width="70" height="70" /></td>
                 <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
                 <td><button mat-icon-button color="warn">
                         <mat-icon (click)="delete(user.id)">delete</mat-icon>
                     </button>

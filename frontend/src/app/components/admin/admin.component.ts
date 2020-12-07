@@ -57,12 +57,11 @@ export class AdminComponent implements OnInit {
   post():void{
     const inpOne = this.newUserForm.controls['email'].value.trim()
     const inpTwo = this.newUserForm.controls['password'].value.trim()
-    const inpThree = this.newUserForm.controls['role'].value.trim()
+    const inpThree = this.newUserForm.controls['role'].value
 
     if(!inpOne || !inpTwo || !inpThree){
       return;
     }
-
     if(inpThree.toLowerCase() === "user" || inpThree.toLowerCase() === "admin"){
       console.log(this.newUserForm.value);
       console.log(inpOne);
@@ -100,6 +99,12 @@ export class AdminComponent implements OnInit {
     
   // }
 
+  // acting as constants
+  BTN_SHOW_PRODUCTS:string="showProducts";
+  BTN_SHOW_USER:string = "showUser";
+  BTN_ADD_USER:string="addUser";
+
+  displayDiv:boolean=false;
   addUser:boolean=false;
   addUserfunc(){
     if(this.addUser==false){
@@ -108,7 +113,59 @@ export class AdminComponent implements OnInit {
     else{
       this.addUser=false;
     }
-    
+  }
+
+  /**
+   * Changes the div rendered based on the arg
+   * @arg String  value passed in from HTML button click
+   */
+  changeView(arg) {
+
+    if (this.showProducts && this.showUser) {
+      this.showUser = (arg === this.BTN_SHOW_PRODUCTS) ? !this.showUser : this.showUser;
+      this.showProducts = (arg === this.BTN_SHOW_USER) ? !this.showProducts : this.showProducts;    
+    }
+
+    else if (this.showProducts && this.addUser) {
+      this.addUser = (arg === this.BTN_SHOW_PRODUCTS) ? !this.addUser : this.addUser;
+      this.showProducts = (arg === this.BTN_ADD_USER) ? !this.showProducts : this.showProducts;
+    }
+
+    else if (this.showUser && this.addUser) {
+      this.addUser = (arg === this.BTN_SHOW_USER) ? !this.addUser : this.addUser;
+      this.showUser = (arg === this.BTN_ADD_USER) ? !this.showUser : this.showUser;
+    }
+  
+  }
+
+  displayDivfunc(arg) {
+    // opening a div and making it visible
+    if (this.displayDiv == false ) {
+      this.displayDiv = true;      
+    }
+
+      if (this.displayDiv == true) {
+
+        // because of arg, one of these flags will be true and displays div
+        if (arg === this.BTN_SHOW_USER) {
+          this.showUserfunc();
+        }
+
+        else if (arg === this.BTN_ADD_USER) {
+          this.addUserfunc();
+        }
+
+        else if (arg === this.BTN_SHOW_PRODUCTS) {
+          this.showProductsfunc();
+        }
+
+        this.changeView(arg)
+
+        // closes div element and makes it not visible
+        if (!this.showUser && !this.addUser &&!this.showProducts) {
+          this.displayDiv = false;
+        }
+    }
   }
 
   showUser:boolean=false;
@@ -119,7 +176,6 @@ export class AdminComponent implements OnInit {
     else{
       this.showUser=false;
     }
-    
   }
 
   showProducts:boolean=false;
