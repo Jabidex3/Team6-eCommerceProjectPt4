@@ -24,4 +24,10 @@ export class ProductCrudService {
     console.log(productItem)
     return this.http.get<Product>(productItem, { responseType: "json" });//.pipe(tap((_)=>console.log("fetched users")));
   }
+
+  private urlProduct = "http://localhost:3000/product";
+  postProduct(product: Product): Observable<any> {
+    console.log(product);
+    return this.http.post(this.urlProduct, product, this.httpOptions);
+  }
 }

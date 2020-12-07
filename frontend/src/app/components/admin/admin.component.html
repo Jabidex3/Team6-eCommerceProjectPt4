@@ -205,3 +205,46 @@
         </mat-list-item>
     </mat-list>
 </mat-card> -->
+<button (click)="toggleAddProduct()" class="adminBtn">
+    Add New Product
+</button>
+<form [formGroup]="newProductForm" (ngSubmit)="postProduct()" novalidate *ngIf="addProduct" class="centerForm">
+    <h1>Add a New Product:</h1>
+
+    <mat-form-field class="inputField-sm">
+        <mat-label>Product Name</mat-label>
+        <input #nameInp matInput placeholder="Name" formControlName="product_name" />
+    </mat-form-field>
+
+    <mat-form-field class="inputField-sm">
+        <mat-label>Description</mat-label>
+        <input #descInp matInput placeholder="Describe the product" formControlName="description" />
+    </mat-form-field>
+
+    <mat-form-field class="inputField-sm">
+        <mat-label>Price</mat-label>
+        <input #priceInp matInput type="number" placeholder="$0.00" formControlName="price" />
+    </mat-form-field>
+
+
+    <input #fileInp class="file-upload" type="file" (change)="onFileChange($event)">
+    <br>
+
+
+    <button class=" adminBtn" type="submit">
+        Add Product
+    </button>
+
+    <div class="error">
+        <div #unsuccessPost *ngIf="div1">
+            Invalid Inputs! Try Again!
+        </div>
+    </div>
+
+    <div class="success">
+        <div #successPost *ngIf="div2">
+            You have successfully created the new user!
+        </div>
+    </div>
+
+</form>
