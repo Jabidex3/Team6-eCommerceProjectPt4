@@ -26,4 +26,14 @@ export class CartCrudService {
     console.log(url2)
     return this.http.get<Cart[]>(url2, { responseType: "json" });//.pipe(tap((_)=>console.log("fetched users")));
   }
+
+  delete(cid: number): Observable<any> {
+    const urlthree = `http://localhost:3000/user/cart/${cid}`;
+    return this.http.delete<Cart>(urlthree, this.httpOptions);
+  }
+
+  getCount(id: number): Observable<any> {
+    const url4 = `http://localhost:3000/user/cart/items/${id}`;
+    return this.http.get<any>(url4, { responseType: "json" });//.pipe(tap((_)=>console.log("fetched users")));
+  }
 }
