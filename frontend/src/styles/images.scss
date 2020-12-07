@@ -1,0 +1,14 @@
+// Use for user and product thumbnails
+@mixin thumbnails {
+    border-radius: 50%;
+    border: solid 3px $lightblue;
+    margin-right: 1vw;
+    box-shadow: 2px 2px 11px $black;
+}
+
+img {
+    &.product, &.user {
+        @include thumbnails;
+    }
+
+}

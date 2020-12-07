@@ -7,7 +7,11 @@ exports.getAllProducts = async (req, res, next) => {
     try {
         const [allProducts] = await Product.fetchAll();
         for (var product of allProducts) {
+<<<<<<< HEAD
             product.picture =  "data:image/jpeg;base64," + await fsp.readFile("../backend/assets/products/"+product.picture, 'base64');
+=======
+            product.picture = "data:image/jpeg;base64," + await fsp.readFile("../backend/assets/products/" + product.picture, 'base64');
+>>>>>>> main
         }
         res.status(200).json(allProducts);
     } catch {
