@@ -39,6 +39,11 @@ export class CartCrudService {
 
   getCount(id: number): Observable<any> {
     const url4 = `http://localhost:3000/user/cart/items/${id}`;
-    return this.http.get<any>(url4, { responseType: "json" });//.pipe(tap((_)=>console.log("fetched users")));
+    return this.http.get<any>(url4, { responseType: "json" });
+  }
+
+  getPrice(id: number): Observable<any> {
+    const url5 = `http://localhost:3000/user/cart/price/${id}`;
+    return this.http.get<any>(url5, { responseType: "json" });
   }
 }

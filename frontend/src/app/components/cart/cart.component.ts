@@ -15,6 +15,7 @@ import { User } from 'src/app/models/User';
 export class CartComponent implements OnInit {
   cartItems$: Observable<Cart[]>;
   itemCount$: Observable<any>;
+  price$: Observable<any>;
   currUser$: User;
   profilePicture: string;
   constructor(private cartCrudService: CartCrudService, private router: Router) {
@@ -26,8 +27,10 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartItems$ = this.cartCrudService.fetchAll(this.currUser$.id)
     this.itemCount$ = this.cartCrudService.getCount(this.currUser$.id)
+    this.price$ = this.cartCrudService.getPrice(this.currUser$.id)
     this.showCart();
   }
+
   deleteSessionUserInfo(): void {
     sessionStorage.removeItem('currentUser');
   }
@@ -68,6 +71,19 @@ export class CartComponent implements OnInit {
     else {
       this.emptyCartCheck = true;
       this.defEmptyCart = false;
+      this.total();
     }
+  }
+  async total(): Promise<void> {
+    try {
+      await this.price$.forEach(value => sessionStorage.setItem('price', JSON.stringify([value][0])));
+    }
+    catch {
+      console.log('error retrieving from db');
+    }
+
+    var total = JSON.parse(sessionStorage.getItem('price'));
+    let myContainer = document.getElementById('price') as HTMLElement;
+    myContainer.innerHTML = "Grand Total: <b>$" + total + "</b>";
   }
 }

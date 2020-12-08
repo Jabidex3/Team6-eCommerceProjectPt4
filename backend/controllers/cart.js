@@ -85,3 +85,19 @@ exports.numItem = async (req, res, next) => {
     }
 
 };
+
+exports.totalPrice = async (req, res, next) => {
+    const id = req.params.id;
+    try {
+        const cartDetails = {
+            id: id
+        };
+        const [prod] = await Cart.cartTotalPrice(cartDetails);
+        //res.status(202).json(prod[0]);
+        res.send(JSON.stringify(prod[0]['total']));
+
+    } catch {
+        console.log('Error');
+    }
+
+};

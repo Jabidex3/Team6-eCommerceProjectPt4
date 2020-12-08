@@ -33,4 +33,8 @@ module.exports = class Cart {
     static numItemInCart(cartItems) {
         return db.execute('SELECT COUNT(*) as records FROM cart where id=?', [cartItems.id]);
     }
+
+    static cartTotalPrice(idOfLoggedInUser) {
+        return db.execute('select sum(price) as total from cart where id = ?', [idOfLoggedInUser.id]);
+    }
 };
