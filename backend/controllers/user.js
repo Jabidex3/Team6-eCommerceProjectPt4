@@ -92,6 +92,7 @@ exports.putUser = async (req, res, next) =>{
     const email = req.body.email;
     const password = req.body.password;
     const role = req.body.role;
+    const picture = req.body.picture;
 
     try{
         const userDetails = {
@@ -99,9 +100,17 @@ exports.putUser = async (req, res, next) =>{
             email:email,
             password:password,
             role:role,
+            picture:picture
         };
-        const putResponse = await User.update(userDetails);
-        res.status(200).json(putResponse);
+        if (req.body.picture == null || req.body.picture == undefined || req.body.picture == "") {
+            var putResponse = await User.updateWithoutPicture(userDetails);
+            res.sendStatus(200);
+        }
+        else {
+            var putResponse = await User.updateWithPicture(userDetails);
+            res.sendStatus(200);
+        }
+
     } catch{
         console.log('Error');
     }
