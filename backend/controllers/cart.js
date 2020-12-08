@@ -61,6 +61,15 @@ exports.deleteCartItem = async (req, res, next) => {
     }
 };
 
+exports.deleteAllCartItems = async (req, res, next) => {
+    try {
+        const deleteResponse = await Cart.deleteAll(req.params.id);
+        res.status(200).json(deleteResponse);
+    } catch {
+        console.log('Error');
+    }
+};
+
 exports.numItem = async (req, res, next) => {
     const id = req.params.id;
     try {

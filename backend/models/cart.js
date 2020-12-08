@@ -26,6 +26,10 @@ module.exports = class Cart {
         return db.execute('delete from cart where cid = ?', [cid]);
     }
 
+    static deleteAll(id) {
+        return db.execute('delete from cart where id = ?', [id]);
+    }
+
     static numItemInCart(cartItems) {
         return db.execute('SELECT COUNT(*) as records FROM cart where id=?', [cartItems.id]);
     }

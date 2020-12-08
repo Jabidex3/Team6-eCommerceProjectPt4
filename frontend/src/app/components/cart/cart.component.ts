@@ -43,7 +43,10 @@ export class CartComponent implements OnInit {
   }
 
   emptyCart(): void {
-    console.log("clear");
+
+    this.cartCrudService.deleteAll(this.currUser$.id).subscribe();
+    window.location.reload();
+    //console.log("clear");
   }
 
 
