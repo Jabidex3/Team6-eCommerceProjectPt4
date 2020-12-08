@@ -31,9 +31,9 @@
                 Manage Products
             </button> -->
 
-                    <button mat-menu-item routerLink="/user">
+                    <button mat-menu-item routerLink="/adminprofile">
                         <mat-icon>account_circle</mat-icon>
-                        User Profile
+                        Admin Profile
                     </button>
 
                     <button mat-menu-item (click)="deleteSessionUserInfo()" routerLink="/login">
@@ -74,6 +74,10 @@
 
 <button (click)="displayDivfunc('addUser')" class="adminBtn">
     Add New User
+</button>
+
+<button (click)="displayDivfunc('addProduct')" class="adminBtn">
+    Add New Product
 </button>
 
 <div class="formContainer">
@@ -187,6 +191,8 @@
     </div>
 
 </div>
+
+
 <!-- <mat-card style="width: 50%; margin: auto;">
 
 
@@ -205,9 +211,7 @@
         </mat-list-item>
     </mat-list>
 </mat-card> -->
-<button (click)="toggleAddProduct()" class="adminBtn">
-    Add New Product
-</button>
+
 <form [formGroup]="newProductForm" (ngSubmit)="postProduct()" novalidate *ngIf="addProduct" class="centerForm">
     <h1>Add a New Product:</h1>
 
