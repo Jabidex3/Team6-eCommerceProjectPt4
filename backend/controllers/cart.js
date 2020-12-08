@@ -61,6 +61,15 @@ exports.deleteCartItem = async (req, res, next) => {
     }
 };
 
+exports.deleteAllCartItems = async (req, res, next) => {
+    try {
+        const deleteResponse = await Cart.deleteAll(req.params.id);
+        res.status(200).json(deleteResponse);
+    } catch {
+        console.log('Error');
+    }
+};
+
 exports.numItem = async (req, res, next) => {
     const id = req.params.id;
     try {
@@ -70,6 +79,22 @@ exports.numItem = async (req, res, next) => {
         const [prod] = await Cart.numItemInCart(cartDetails);
         //res.status(202).json(prod[0]);
         res.send(JSON.stringify(prod[0]['records']));
+
+    } catch {
+        console.log('Error');
+    }
+
+};
+
+exports.totalPrice = async (req, res, next) => {
+    const id = req.params.id;
+    try {
+        const cartDetails = {
+            id: id
+        };
+        const [prod] = await Cart.cartTotalPrice(cartDetails);
+        //res.status(202).json(prod[0]);
+        res.send(JSON.stringify(prod[0]['total']));
 
     } catch {
         console.log('Error');
