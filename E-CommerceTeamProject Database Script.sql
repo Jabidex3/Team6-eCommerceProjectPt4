@@ -21,3 +21,13 @@ create table product (
     picture varchar(255),
     primary key(pid)
 );
+
+create table cart(
+	cid int auto_increment,
+    id int, 
+    pid int, 
+	product_name varchar(255),
+	price float,
+	picture varchar(255),
+    primary key(cid)
+);
