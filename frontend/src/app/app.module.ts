@@ -26,6 +26,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { ViewItemComponent } from './components/view-item/view-item.component';
 import { CartComponent } from './components/cart/cart.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AdminProfileComponent } from './components/admin-profile/admin-profile.
     ShopComponent,
     ViewItemComponent,
     CartComponent,
-    AdminProfileComponent
+    AdminProfileComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

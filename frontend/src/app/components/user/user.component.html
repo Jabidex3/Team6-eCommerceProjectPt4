@@ -6,7 +6,7 @@
 
             <span class="userName">
                 <img class="user" [src]="profilePicture" width="70" height="70" />
-                Sample Name
+                {{ this.loggedInUser$.email}}
                 <!-- {{ sessionStorage.getItem('currentUser').email }} -->
             </span>
 
@@ -67,7 +67,9 @@
 <!-- <div id="last"></div>
 <button (click) = "displayPerson()">Click</button> -->
 
-<div style="margin-top: 10px" id="hiName"></div>
+<!--<div style="margin-top: 10px" id="hiName"></div>-->
+<h1>User Dashboard</h1>
+<h3>Welcome, {{this.loggedInUser$.email}}</h3>
 
 <button (click)="showUserDetailfunc()" style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;">
     Hide/Show User Details</button>
