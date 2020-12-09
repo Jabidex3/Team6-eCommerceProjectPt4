@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
     }
     else{
       this.div1 = false;
-      this.router.navigate(["user"]); //localStorage.removeItem('currentUser');
+      this.router.navigate(["shop"]); //localStorage.removeItem('currentUser');
     }
   }
 
