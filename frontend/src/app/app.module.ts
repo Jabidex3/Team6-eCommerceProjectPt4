@@ -14,7 +14,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from "@angular/material/menu";
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AdminComponent } from './components/admin/admin.component';
 import { SignupComponent } from './components/signup/signup.component';
