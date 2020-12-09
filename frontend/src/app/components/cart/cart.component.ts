@@ -42,7 +42,8 @@ export class CartComponent implements OnInit {
   }
 
   checkout(): void {
-    console.log("hello");
+    //console.log("hello");
+    this.router.navigate(["checkout"]);
   }
 
   emptyCart(): void {
