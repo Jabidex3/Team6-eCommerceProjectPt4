@@ -27,7 +27,8 @@ export class UserComponent implements OnInit {
       id: new FormControl(this.loggedInUser$.id,[Validators.required]),
       email: new FormControl(this.loggedInUser$.email,[Validators.required]),
       password: new FormControl(this.loggedInUser$.password,[Validators.required]),
-      role: new FormControl(this.loggedInUser$.role,[Validators.required])
+      role: new FormControl(this.loggedInUser$.role,[Validators.required]),
+      picture: new FormControl("",[Validators.required])
     });
   }
 
@@ -73,5 +74,21 @@ export class UserComponent implements OnInit {
     }
   }
 
+  public onFileChange(event) {
+    const reader = new FileReader();
+ 
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+     
+      reader.onload = () => {
+        this.updateUserForm.patchValue({
+          picture: reader.result
+        });
+        this.profilePicture = this.updateUserForm.controls['picture'].value;
+      };
+    }
+  }
+ 
   
 }
