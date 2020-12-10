@@ -1,0 +1,54 @@
+<mat-toolbar>
+    <span>Ecommerce Application V1</span>
+    <span>
+
+        <span class="navbarItem">
+
+            <span class="userName">
+                <img class="user" [src]="profilePicture" width="70" height="70" />
+                {{this.loggedInUser$.email}}
+                <!-- {{ sessionStorage.getItem('currentUser').email }} -->
+            </span>
+
+        </span>
+
+        <span class="navbarItem">
+
+            <span class="menuWrapper">
+                <button mat-button [matMenuTriggerFor]="menu" class="navbarMenu">
+                    <mat-icon>menu</mat-icon>
+                    Menu
+                </button>
+
+                <mat-menu #menu="matMenu">
+
+
+                    <!-- <button mat-menu-item routerLink="">
+                <mat-icon></mat-icon>
+                Manage Products
+            </button> -->
+
+                    <button mat-menu-item routerLink="/user">
+                        <mat-icon>account_circle</mat-icon>
+                        User Profile
+                    </button>
+                    <button mat-menu-item routerLink="/shop">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                        Shop
+                    </button>
+                    <button mat-menu-item routerLink="/cart">
+                        <mat-icon>shopping_cart</mat-icon>
+                        Cart
+                    </button>
+
+                    <button mat-menu-item (click)="deleteSessionUserInfo()" routerLink="/login">
+                        <mat-icon>power_settings_new</mat-icon>
+                        Log out
+                    </button>
+                </mat-menu>
+            </span>
+        </span>
+    </span>
+</mat-toolbar>
+<br>
+<h1>THANK YOU!</h1>

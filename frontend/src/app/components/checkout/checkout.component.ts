@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/User';
+import { Cart } from 'src/app/models/Cart';
+import { CartCrudService } from 'src/app/services/cart-crud.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
@@ -13,14 +16,19 @@ export class CheckoutComponent implements OnInit {
   userForm: FormGroup;
   profilePicture: string;
   loggedInUser$: User;
+  cartItems$: Observable<Cart[]>;
+  total$: number;
 
-  constructor(private router: Router) {
+  constructor(private cartCrudService: CartCrudService, private router: Router) {
     this.loggedInUser$ = JSON.parse(sessionStorage.getItem('currentUser'));
     this.profilePicture = this.loggedInUser$.picture;
+    this.total$ = JSON.parse(sessionStorage.getItem('price'));
   }
 
   ngOnInit(): void {
     this.userForm = this.createUserForm();
+    this.cartItems$ = this.cartCrudService.fetchAll(this.loggedInUser$.id);
+
   }
 
   createUserForm(): FormGroup {
@@ -43,12 +51,36 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  continueToSubmitOrder(): void {
-    console.log(this.userForm.value);
-  }
+
 
   deleteSessionUserInfo(): void {
     sessionStorage.removeItem('currentUser');
   }
 
+  continueCheck: boolean = true;
+  initialCheck: boolean = false;
+  continueToSubmitOrder(): void {
+    console.log(this.userForm.value);
+    if (this.userForm.valid) {
+      this.continueCheck = false;
+      this.initialCheck = true;
+    }
+
+  }
+
+  editInfo(): void {
+    this.continueCheck = true;
+    this.initialCheck = false;
+  }
+
+  cancel(): void {
+    //console.log("hello");
+    this.router.navigate(["cart"]);
+  }
+
+  submit(): void {
+    //console.log("hello");
+    this.cartCrudService.deleteAll(this.loggedInUser$.id).subscribe();
+    this.router.navigate(["thanks"]);
+  }
 }
