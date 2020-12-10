@@ -27,6 +27,7 @@ import { ViewItemComponent } from './components/view-item/view-item.component';
 import { CartComponent } from './components/cart/cart.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ThanksComponent } from './components/thanks/thanks.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     ViewItemComponent,
     CartComponent,
     AdminProfileComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ThanksComponent
   ],
   imports: [
     BrowserModule,

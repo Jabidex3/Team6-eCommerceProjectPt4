@@ -52,103 +52,152 @@
 </mat-toolbar>
 <br>
 
-<div class="formContainer">
+<div *ngIf="continueCheck">
+    <div class="formContainer">
 
-    <form [formGroup]="userForm" (ngSubmit)="continueToSubmitOrder()" class="centerForm" novalidate>
-        <p>Customer Info</p>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Name</mat-label>
-            <input #nameInp matInput placeholder="John Doe" formControlName="name" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Email</mat-label>
-            <input #emailInp matInput placeholder="example@gmail.com" formControlName="email" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Phone</mat-label>
-            <input #pInp matInput placeholder="password" formControlName="phone" />
-        </mat-form-field>
+        <form [formGroup]="userForm" (ngSubmit)="continueToSubmitOrder()" class="centerForm" novalidate>
+            <p>Customer Info</p>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Name</mat-label>
+                <input #nameInp matInput placeholder="John Doe" formControlName="name" required />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Email</mat-label>
+                <input #emailInp matInput placeholder="example@gmail.com" formControlName="email" required />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Phone</mat-label>
+                <input #pInp matInput placeholder="0123456789" formControlName="phone" required />
+            </mat-form-field>
 
-        <br>
-        <p>Billing Info</p>
+            <br>
+            <p>Billing Info</p>
 
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="baddress" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Apt #</mat-label>
-            <input matInput formControlName="bapt" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>City</mat-label>
-            <input matInput formControlName="bcity" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>State</mat-label>
-            <input matInput formControlName="bstate" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Country</mat-label>
-            <input matInput formControlName="bcountry" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Zip</mat-label>
-            <input matInput formControlName="bzip" />
-        </mat-form-field>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="baddress" required />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Apt #</mat-label>
+                <input matInput formControlName="bapt" />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="bcity" required />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="bstate" required />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="bcountry" required />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Zip</mat-label>
+                <input matInput formControlName="bzip" required />
+            </mat-form-field>
 
-        <br>
-        <p>Shipping Info</p>
+            <br>
+            <p>Shipping Info</p>
 
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="saddress" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Apt #</mat-label>
-            <input matInput formControlName="sapt" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>City</mat-label>
-            <input matInput formControlName="scity" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>State</mat-label>
-            <input matInput formControlName="sstate" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Country</mat-label>
-            <input matInput formControlName="scountry" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="inputField">
-            <mat-label>Zip</mat-label>
-            <input matInput formControlName="szip" />
-        </mat-form-field>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="saddress" required />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Apt #</mat-label>
+                <input matInput formControlName="sapt" />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="scity" required />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="sstate" required />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="scountry" required />
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="inputField">
+                <mat-label>Zip</mat-label>
+                <input matInput formControlName="szip" required />
+            </mat-form-field>
 
-        <br>
+            <br>
 
-        <span>
-            <button class="loginBtn-login" type="submit">
-                Continue Checkout
-            </button>
-            <button class="loginBtn-cancel" type="reset" value="Reset">
-                Cancel
-            </button>
-        </span>
+            <span>
+                <button class="loginBtn-login" type="submit">
+                    Continue Checkout
+                </button>
+                <button class="loginBtn-cancel" type="reset" value="Reset">
+                    Cancel
+                </button>
+            </span>
 
-    </form>
+        </form>
+
+    </div>
+</div>
+<div *ngIf="initialCheck">
+    <h1>Invoice</h1>
+    <h1 style="text-align: left;">{{this.userForm.controls['name'].value.trim()}}</h1>
+    <h3 style="text-align: left;">Billing Address</h3>
+    {{this.userForm.controls['baddress'].value.trim()}}<br>
+    {{this.userForm.controls['bcity'].value.trim()}}, {{this.userForm.controls['bstate'].value.trim()}}<br>
+    {{this.userForm.controls['bcountry'].value.trim()}}, {{this.userForm.controls['bzip'].value.trim()}}<br>
+    <br>
+    <h3 style="text-align: left;">Shipping Address</h3>
+    {{this.userForm.controls['saddress'].value.trim()}}<br>
+    {{this.userForm.controls['scity'].value.trim()}}, {{this.userForm.controls['sstate'].value.trim()}}<br>
+    {{this.userForm.controls['scountry'].value.trim()}}, {{this.userForm.controls['szip'].value.trim()}}<br>
+    <br>
+
+    <table class="basicTable" style="text-align: center;">
+        <thead>
+            <tr>
+                <td>Image</td>
+                <td>Product Name</td>
+                <td>Quantity</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+
+        <tr *ngFor="let c of cartItems$ | async">
+            <td><img class="product" [src]="c.picture" width="70" height="70" /></td>
+            <td>{{c.product_name}}</td>
+            <td>1</td>
+            <td>{{c.price}}</td>
+        </tr>
+    </table>
+    <h2 style="color: red; text-align: center;">Grand Total: {{total$}}</h2>
+    <br>
+    <br>
+    <button (click)="editInfo()" mat-raised-button color="accent">
+        Back
+    </button>
+
+    <button (click)="submit()" mat-raised-button color="primary">
+        Submit Order
+    </button>
+
+    <button (click)="cancel()" mat-raised-button color="warn">
+        Cancel
+    </button>
 
 </div>
