@@ -15,6 +15,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from "@angular/material/menu";
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog'
 
 import { AdminComponent } from './components/admin/admin.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -28,6 +29,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ThanksComponent } from './components/thanks/thanks.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { ThanksComponent } from './components/thanks/thanks.component';
     CartComponent,
     AdminProfileComponent,
     CheckoutComponent,
-    ThanksComponent
+    ThanksComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ import { ThanksComponent } from './components/thanks/thanks.component';
     ReactiveFormsModule,
     MatMenuModule,
     MatRadioModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

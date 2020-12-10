@@ -153,8 +153,16 @@
                 <td>{{product.description}}</td>
                 <td>${{product.price.toFixed(2)}}</td>
                 <td><button mat-icon-button color="primary">
-                        <mat-icon (click)="viewProduct(product.pid)">info</mat-icon>
-                    </button></td>
+                        <mat-icon (click)="toggleUpdateProduct(product)">edit
+                        </mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="primary">
+                        <mat-icon (click)="deteleProductDialog(product.pid)">
+                            delete_forever
+                        </mat-icon>
+                    </button>
+                </td>
             </tr>
         </table>
     </div>
@@ -237,6 +245,51 @@
 
     <button class=" adminBtn" type="submit">
         Add Product
+    </button>
+
+    <div class="error">
+        <div #unsuccessPost *ngIf="div1">
+            Invalid Inputs! Try Again!
+        </div>
+    </div>
+
+    <div class="success">
+        <div #successPost *ngIf="div2">
+            You have successfully created the new user!
+        </div>
+    </div>
+
+</form>
+
+<form [formGroup]="updateProductForm" (ngSubmit)="editProduct()" novalidate *ngIf="updateProduct" class="centerForm">
+    <h1>Update Product</h1>
+
+    <mat-form-field class="inputField-sm">
+        <mat-label>Product Name</mat-label>
+        <input #nameInp matInput placeholder="Name" value={{productToUpdate.product_name}}
+            formControlName="product_name" />
+    </mat-form-field>
+
+    <mat-form-field class="inputField-sm">
+        <mat-label>Description</mat-label>
+        <input #descInp matInput placeholder="Describe the product" value={{productToUpdate.description}}
+            formControlName="description" />
+    </mat-form-field>
+
+    <mat-form-field class="inputField-sm">
+        <mat-label>Price</mat-label>
+        <input #priceInp matInput type="number" placeholder="$0.00" value={{productToUpdate.price}}
+            formControlName="price" />
+    </mat-form-field>
+
+    <img class="product" [src]="productToUpdate.picture" width="150" height="150"
+        style="margin:auto;margin-bottom: 10px;" />
+    <input #fileInp class="file-upload" type="file" (change)="onProductFileChange($event)" style="margin-left: 50px;">
+    <br>
+
+
+    <button class=" adminBtn" type="submit">
+        Update Product
     </button>
 
     <div class="error">
