@@ -8,7 +8,6 @@
             <span class="userName">
                 <img class="user" [src]="profilePicture" width="70" height="70" />
                 {{this.currUser$.email}}
-                <!-- {{ sessionStorage.getItem('currentUser').email }} -->
             </span>
 
         </span>
@@ -22,12 +21,6 @@
                 </button>
 
                 <mat-menu #menu="matMenu">
-
-
-                    <!-- <button mat-menu-item routerLink="">
-                <mat-icon></mat-icon>
-                Manage Products
-            </button> -->
 
                     <button mat-menu-item routerLink="/user">
                         <mat-icon>account_circle</mat-icon>

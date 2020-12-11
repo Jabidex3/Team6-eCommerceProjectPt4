@@ -7,7 +7,6 @@
             <span class="userName">
                 <img class="user" [src]="profilePicture" width="70" height="70" />
                 {{this.currAdmin$.email}}
-                <!-- {{ sessionStorage.getItem('currentUser').email }} -->
             </span>
 
         </span>
@@ -26,11 +25,6 @@
                         Dashboard
                     </button>
 
-                    <!-- <button mat-menu-item routerLink="">
-                <mat-icon></mat-icon>
-                Manage Products
-            </button> -->
-
                     <button mat-menu-item routerLink="/adminprofile">
                         <mat-icon>account_circle</mat-icon>
                         Admin Profile
@@ -45,21 +39,6 @@
         </span>
     </span>
 </mat-toolbar>
-
-<!-- <div style="width: 40%; margin: auto; ">
-    <mat-form-field style="width: 30%;margin: 2%;">
-        <input #emailInp matInput placeholder="example@gmail.com" />
-    </mat-form-field>
-    <mat-form-field style="width: 30%;margin: 2%;">
-        <input #pwInp matInput placeholder="password" />
-    </mat-form-field>
-    <button (click) ="post(emailInp.value,pwInp.value)" color="primary">
-        Add User
-    </button>
-    
-</div> -->
-<!-- <h1>Welcome {{localStorage.getItem('currentUser') }}</h1> -->
-<!-- style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;" -->
 
 <h1>Admin Dashboard</h1>
 <h3>Welcome, {{this.currAdmin$.email}} . What would you like to do today?</h3>
@@ -121,9 +100,6 @@
 
     </form>
 </div>
-<!-- <div #testerOne *ngIf="div1" style="background-color: blue;">Hi</div>
-<button (click)="div1func()"> test</button> -->
-
 
 <div *ngIf="showProducts">
 
@@ -191,26 +167,6 @@
     </div>
 
 </div>
-
-
-<!-- <mat-card style="width: 50%; margin: auto;">
-
-
-    <mat-list>
-        
-        <mat-list-item *ngFor="let user of users$ | async">
-            <span style="font-weight: bold;">{{user.id}}. {{user.email}} {{user.password}}</span>
-            <span style="position: absolute; right: 0;">
-                <button mat-icon-button color="primary">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button color="warn">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </span>
-        </mat-list-item>
-    </mat-list>
-</mat-card> -->
 
 <form [formGroup]="newProductForm" (ngSubmit)="postProduct()" novalidate *ngIf="addProduct" class="centerForm">
     <h1>Add a New Product:</h1>
