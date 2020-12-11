@@ -7,7 +7,6 @@ import { ProductCrudService } from 'src/app/services/product-crud.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { stringify } from 'querystring';
 import { Router } from '@angular/router';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
   selector: 'app-user-list',
   templateUrl: './admin.component.html',
@@ -22,7 +21,7 @@ export class AdminComponent implements OnInit {
   users$:Observable<User[]>;
   products$: Observable<Product[]>;
   productToUpdate: Product;
-  constructor(private userListCrudService:UserListCrudService,private productCrudService: ProductCrudService, private router: Router,public dialog: MatDialog) {
+  constructor(private userListCrudService:UserListCrudService,private productCrudService: ProductCrudService, private router: Router) {
     this.currAdmin$ = JSON.parse(sessionStorage.getItem('currentUser'));
     this.profilePicture =  this.currAdmin$.picture;
    }
