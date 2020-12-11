@@ -58,7 +58,7 @@ import { ThanksComponent } from './components/thanks/thanks.component';
     MatToolbarModule,
     ReactiveFormsModule,
     MatMenuModule,
-    MatRadioModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

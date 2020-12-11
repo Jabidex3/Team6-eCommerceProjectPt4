@@ -75,7 +75,11 @@
         </div>
 
         <div class="right">
-            <div style="color: red">Picture uploading will go here</div>
+            <div style="color: red;padding-left: 4vw;padding-bottom: 1vw;">Picture uploading</div>
+            <img class="user" style="margin-left: 3vw;" [src]="profilePicture" width="150" height="150" />
+            <br>
+            <input style="padding-top: 1vw;padding-left: 2vw" class="file-upload" type="file"
+                (change)="onFileChange($event)">
         </div>
     </div>
 

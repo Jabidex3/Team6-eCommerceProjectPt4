@@ -30,4 +30,16 @@ export class ProductCrudService {
     console.log(product);
     return this.http.post(this.urlProduct, product, this.httpOptions);
   }
+
+  deleteProduct(id:number):Observable<any>{
+    
+    const urlthree = `http://localhost:3000/product/${id}`;
+    return this.http.delete<Product>(urlthree,this.httpOptions);
+  }
+
+  updateProduct(product: Product): Observable<any>
+  {
+    console.log(product);
+    return this.http.put(this.urlProduct, product, this.httpOptions);
+  }
 }

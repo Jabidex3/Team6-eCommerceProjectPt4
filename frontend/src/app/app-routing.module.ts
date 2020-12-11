@@ -13,6 +13,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ThanksComponent } from './components/thanks/thanks.component';
 
+
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "admin", component: AdminComponent },
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: "cart", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
   { path: "thanks", component: ThanksComponent },
-  { path: "**", redirectTo: "" },
+  { path: "**", redirectTo: "" }
 ];
 
 @NgModule({

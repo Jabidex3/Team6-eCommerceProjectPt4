@@ -31,7 +31,8 @@ export class AdminProfileComponent implements OnInit {
       id: new FormControl({value: this.loggedInUser$.id, disabled:true }, [Validators.required]),
       email: new FormControl({value: this.loggedInUser$.email, disabled:true }, [Validators.required]),
       password: new FormControl(this.loggedInUser$.password,[Validators.required]),
-      role: new FormControl(this.loggedInUser$.role, [Validators.required])
+      role: new FormControl(this.loggedInUser$.role, [Validators.required]),
+      picture: new FormControl("", [Validators.required])
     });
   }
 
@@ -62,11 +63,33 @@ export class AdminProfileComponent implements OnInit {
     // this.userListCrudService.update(this.loggedInUser$.id).subscribe();
     // sessionStorage.removeItem('currentUser');
     // this.router.navigate([""]);
-    this.userListCrudService.update(this.updateUserForm.value).subscribe();
+    var admin = {
+      id: this.loggedInUser$.id,
+      email:this.loggedInUser$.email,
+      password:this.updateUserForm.controls['password'].value,
+      role:this.loggedInUser$.role,
+      picture:this.profilePicture
+    }
+    this.userListCrudService.update(admin).subscribe();
     sessionStorage.setItem('currentUser',JSON.stringify(this.updateUserForm.value));
    // window.location.reload();
   }
 
-  
+  public onFileChange(event) {
+    const reader = new FileReader();
+ 
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+     
+      reader.onload = () => {
+        this.updateUserForm.patchValue({
+          picture: reader.result
+        });
+        this.profilePicture = this.updateUserForm.controls['picture'].value;
+      };
+    }
+  }
+ 
 
 }

@@ -7,7 +7,6 @@ import { ProductCrudService } from 'src/app/services/product-crud.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { stringify } from 'querystring';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-user-list',
   templateUrl: './admin.component.html',
@@ -16,10 +15,12 @@ import { Router } from '@angular/router';
 export class AdminComponent implements OnInit {
   newUserForm: FormGroup;
   newProductForm: FormGroup;
+  updateProductForm: FormGroup;
   profilePicture:string;
   currAdmin$:User;
   users$:Observable<User[]>;
   products$: Observable<Product[]>;
+  productToUpdate: Product;
   constructor(private userListCrudService:UserListCrudService,private productCrudService: ProductCrudService, private router: Router) {
     this.currAdmin$ = JSON.parse(sessionStorage.getItem('currentUser'));
     this.profilePicture =  this.currAdmin$.picture;
@@ -30,6 +31,7 @@ export class AdminComponent implements OnInit {
     this.newUserForm = this.createFormGroup();
     this.newProductForm = this.createProductFormGroup();
     this.products$ = this.productCrudService.fetchAll();
+    this.updateProductForm = this.createUpdateProductFormGroup();
   }
 
   createFormGroup():FormGroup{
@@ -49,6 +51,17 @@ export class AdminComponent implements OnInit {
      
     });
   }
+  createUpdateProductFormGroup():FormGroup{
+    return new FormGroup({
+      pid: new FormControl("",[Validators.required]),
+      product_name: new FormControl("",[Validators.required]),
+      description: new FormControl("",[Validators.required]),
+      price: new FormControl("",[Validators.required]),
+      picture: new FormControl("",[Validators.required])
+     
+    });
+  }
+
   // post(email: String, password:String):void{
   //   const inpOne = email.trim();
   //   const inpTwo = password.trim();
@@ -124,6 +137,7 @@ export class AdminComponent implements OnInit {
     else{
       this.addUser=false;
     }
+    this.updateProduct = false;
   }
 
   /**
@@ -208,11 +222,13 @@ export class AdminComponent implements OnInit {
     else{
       this.showUser=false;
     }
+    this.updateProduct = false;
   }
 
   showProducts:boolean=false;
   toggleShowProducts() {
     this.showProducts = (!this.showProducts) ? true : false;
+    this.updateProduct = false;
   }
   
   delete(id:number):void{
@@ -239,6 +255,7 @@ export class AdminComponent implements OnInit {
     else{
       this.addProduct=false;
     }
+    this.updateProduct = false;
     
   }
   public onFileChange(event) {
@@ -265,4 +282,47 @@ export class AdminComponent implements OnInit {
     this.productCrudService.postProduct(this.newProductForm.value).subscribe();
   }
 
+  deteleProductDialog(id:number)
+  {
+   
+    this.productCrudService.deleteProduct(id).subscribe();
+  }
+  updateProduct: boolean = false;
+  toggleUpdateProduct(product: Product){
+   
+    if(this.showProducts == true)
+    {
+      this.showProducts = !this.showProducts;
+      this.updateProduct = !this.updateProduct;
+      this.productToUpdate = product;
+      this.updateProductForm.controls['pid'].setValue(this.productToUpdate.pid);
+      this.updateProductForm.controls['product_name'].setValue(this.productToUpdate.product_name); 
+      this.updateProductForm.controls['description'].setValue(this.productToUpdate.description);
+      this.updateProductForm.controls['price'].setValue(this.productToUpdate.price);
+      this.updateProductForm.controls['picture'].setValue(this.productToUpdate.picture);
+    }
+   
+  }
+  public onProductFileChange(event) {
+    const reader = new FileReader();
+ 
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+     
+      reader.onload = () => {
+        this.updateProductForm.patchValue({
+          picture: reader.result
+        });
+        this.productToUpdate.picture = this.updateProductForm.controls['picture'].value;
+      };
+    }
+  }
+ 
+  editProduct()
+  {
+    this.updateProduct = false;
+    this.showProducts = true;
+    this.productCrudService.updateProduct(this.updateProductForm.value).subscribe();
+  }
 }

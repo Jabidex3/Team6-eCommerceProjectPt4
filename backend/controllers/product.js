@@ -59,7 +59,8 @@ exports.addProduct = async (req, res, next) => {
 
 exports.deleteProduct = async (req, res, next) => {
     try {
-        const deleteResponse = await Product.delete(req.body.pid);
+        console.log(req.params.pid);
+        const deleteResponse = await Product.delete(req.params.pid);
         res.status(200).json(deleteResponse);
     } catch {
         console.log('Error');
