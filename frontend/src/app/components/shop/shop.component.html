@@ -52,23 +52,30 @@
     </span>
 </mat-toolbar>
 
-<div>
-    <h1 style="text-align: center;">Product List</h1>
-    <table style="width: 50%; margin: auto; text-align: center;" border=1>
-        <tr>
-            <th>Product Id</th>
-            <th>Product Picture</th>
-            <th>Product Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>View</th>
-        </tr>
+<div class="centerDiv">
+    <h1>Product List</h1>
+    <h3>Browse our products and click on the icon to view more information</h3>
+    <h3>When you are ready to checkout, visit the cart in the menu</h3>
+</div>
+
+<div class="wrapTable">
+    <table class="basicTable">
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product Picture</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>View</th>
+            </tr>
+        </thead>
         <tr *ngFor="let product of products$ | async">
             <td>{{product.pid}}</td>
-            <td><img class="product" [src]="product.picture" width="70" height="70" /></td>
+            <td><img class="product" [src]="product.picture" width="70" height="70" alt="product image" /></td>
             <td>{{product.product_name}}</td>
             <td>{{product.description}}</td>
-            <td>{{product.price}}</td>
+            <td>${{product.price.toFixed(2)}}</td>
             <td><button mat-icon-button color="primary">
                     <mat-icon (click)="viewProduct(product.pid)">info</mat-icon>
                 </button></td>

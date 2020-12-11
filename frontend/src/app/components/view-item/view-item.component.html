@@ -51,10 +51,17 @@
 </mat-toolbar>
 
 
-<div style="margin-top: 10px" id="productInfo"></div>
-<button (click)="cancel()">
-    Cancel
-</button>
-<button (click)="post()">
-    Add To Cart
-</button>
+<div class="wrapTable">
+    <h1>Item ID {{this.currItem$.pid}}: {{ this.currItem$.product_name }}</h1>
+    <p class="centerDiv">Click the buttons below to add the item to your cart, or return to the previous page</p>
+    <div id="productInfo"></div>
+</div>
+
+<div class="centerDiv">
+    <button (click)="cancel()" class="cancelBtn">
+        Cancel
+    </button>
+    <button (click)="post()" class="adminBtn">
+        Add To Cart
+    </button>
+</div>
