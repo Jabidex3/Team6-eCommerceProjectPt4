@@ -24,8 +24,8 @@ export class UserComponent implements OnInit {
 
   createFormGroup(): FormGroup {
     return new FormGroup({
-      id: new FormControl(this.loggedInUser$.id, [Validators.required]),
-      email: new FormControl(this.loggedInUser$.email, [Validators.required]),
+      id: new FormControl({value: this.loggedInUser$.id, disabled: true}, [Validators.required]),
+      email: new FormControl({value: this.loggedInUser$.email, disabled:true}, [Validators.required]),
       password: new FormControl(this.loggedInUser$.password, [Validators.required]),
       role: new FormControl(this.loggedInUser$.role, [Validators.required]),
       picture: new FormControl("", [Validators.required])

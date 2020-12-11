@@ -3,18 +3,13 @@
     <span>
 
         <span class="navbarItem">
-
             <span class="userName">
                 <img class="user" [src]="profilePicture" width="70" height="70" />
                 {{ this.loggedInUser$.email}}
-                <!-- {{ sessionStorage.getItem('currentUser').email }} -->
             </span>
-
-
         </span>
 
         <span class="navbarItem">
-
             <span class="menuWrapper">
                 <button mat-button [matMenuTriggerFor]="menu" class="navbarMenu">
                     <mat-icon>menu</mat-icon>
@@ -22,12 +17,6 @@
                 </button>
 
                 <mat-menu #menu="matMenu">
-
-
-                    <!-- <button mat-menu-item routerLink="">
-                <mat-icon></mat-icon>
-                Manage Products
-            </button> -->
 
                     <button mat-menu-item routerLink="/user">
                         <mat-icon>account_circle</mat-icon>
@@ -52,30 +41,54 @@
     </span>
 </mat-toolbar>
 
-<!-- <mat-toolbar>
-    <span>Ecommerce Application V1</span>
+<div class="centerDiv">
+    <h1>User Dashboard</h1>
+    <h3>Welcome to your profile, {{this.loggedInUser$.email}}</h3>
+</div>
+
+<form [formGroup]="updateUserForm" (ngSubmit)="update()" novalidate class="centerForm">
+    <div class="flex-container">
+        <div class="left">
+
+
+            <mat-form-field class="inputField-med">
+                <mat-label>User ID</mat-label>
+                <input #idInp matInput formControlName="id" />
+            </mat-form-field>
+
+            <mat-form-field class="inputField-med">
+                <mat-label>Email</mat-label>
+                <input #emailInp matInput formControlName="email" />
+            </mat-form-field>
+
+            <mat-form-field class="inputField-med">
+                <mat-label>Password</mat-label>
+                <input #pwInp matInput formControlName="password" />
+            </mat-form-field>
+
+            <mat-radio-group formControlName="role" disabled>
+                <mat-radio-button value="admin" checked>Admin</mat-radio-button>
+                <mat-radio-button value="user">User</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="right">
+            <img class="product" [src]="profilePicture" width="70" height="70" style="margin:auto" />
+            <br />
+            <input #fileInp class="file-upload" type="file" (change)="onFileChange($event)">
+        </div>
+    </div>
+
     <span>
+        <button class="adminBtn" type="submit">
+            <span>Update user</span>
+        </button>
 
-        <img [src]="profilePicture" width="70" height="70" />
-
-        <a routerLink="/user">User</a>
-        <a routerLink="/shop">Shop</a>
-        <a routerLink="/cart">Cart</a>
-        <a (click)="deleteSessionUserInfo()" routerLink="/login">Logout</a>
+        <button class="deleteBtn" (click)="delete()">
+            Delete
+        </button>
     </span>
-</mat-toolbar> -->
-<!-- <div id="last"></div>
-<button (click) = "displayPerson()">Click</button> -->
 
-<!--<div style="margin-top: 10px" id="hiName"></div>-->
-<h1>User Dashboard</h1>
-<h3>Welcome, {{this.loggedInUser$.email}}</h3>
-
-<button (click)="showUserDetailfunc()" style="margin-top: 2%;margin-bottom: 2%; background-color: blue; color: white;">
-    Hide/Show User Details</button>
-<form [formGroup]="updateUserForm" (ngSubmit)="update()" novalidate *ngIf="showDetails">
-    <h1 style="text-align: center; margin-top: 15px;">User Data:</h1>
-    <table style="width: 50%; margin: auto; text-align: center;" border=1>
+    <!-- <table style="width: 50%; margin: auto; text-align: center;" border=1>
         <tr>
             <th>User Id</th>
             <th>Product Picture</th>
@@ -127,5 +140,5 @@
 
 
 
-    </table>
+    </table> -->
 </form>
