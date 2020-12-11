@@ -33,3 +33,7 @@
 .cancelBtn {
     @include btnStyle($gray2, $gray2-hover);
 }
+
+.deleteBtn {
+    @include btnStyle($red, $red-hover);
+}
