@@ -7,7 +7,6 @@
             <span class="userName">
                 <img class="user" [src]="profilePicture" width="70" height="70" />
                 {{this.currUser$.email}}
-                <!-- {{ sessionStorage.getItem('currentUser').email }} -->
             </span>
 
         </span>
@@ -21,9 +20,6 @@
                 </button>
 
                 <mat-menu #menu="matMenu">
-
-
-
 
                     <button mat-menu-item routerLink="/user">
                         <mat-icon>account_circle</mat-icon>
@@ -50,10 +46,10 @@
 <br>
 <h1 style="text-align: center;">Cart</h1>
 <div *ngIf="emptyCartCheck">
-    <button (click)="emptyCart()">
+    <button (click)="emptyCart()" class="deleteBtn">
         Clear Cart
     </button>
-    <button (click)="checkout()">
+    <button (click)="checkout()" class="adminBtn">
         Checkout
     </button>
     <table class="basicTable" style="text-align: center;">
@@ -69,7 +65,7 @@
         <tr *ngFor="let c of cartItems$ | async">
             <td><img class="product" [src]="c.picture" width="70" height="70" /></td>
             <td>{{c.product_name}}</td>
-            <td>{{c.price}}</td>
+            <td>${{c.price.toFixed(2)}}</td>
             <td><button mat-icon-button color="warn">
                     <mat-icon (click)="delete(c.cid)">delete</mat-icon>
                 </button>

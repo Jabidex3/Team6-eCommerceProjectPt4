@@ -44,13 +44,13 @@
 <div class="centerDiv">
     <h1>User Dashboard</h1>
     <h3>Welcome to your profile, {{this.loggedInUser$.email}}</h3>
+    <p>View and edit your information below </p>
 </div>
 
 <form [formGroup]="updateUserForm" (ngSubmit)="update()" novalidate class="centerForm">
     <div class="flex-container">
+
         <div class="left">
-
-
             <mat-form-field class="inputField-med">
                 <mat-label>User ID</mat-label>
                 <input #idInp matInput formControlName="id" />
@@ -72,6 +72,7 @@
             </mat-radio-group>
         </div>
         <div class="right">
+            <h5 style="text-align: left;">Change profile picture</h5>
             <img class="product" [src]="profilePicture" width="70" height="70" style="margin:auto" />
             <br />
             <input #fileInp class="file-upload" type="file" (change)="onFileChange($event)">
