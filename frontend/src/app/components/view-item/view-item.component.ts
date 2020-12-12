@@ -16,6 +16,7 @@ export class ViewItemComponent implements OnInit {
   loggedInUser$: User;
   facilitatorForm: FormGroup;
   profilePicture: string;
+  imgSrc: string;
   constructor(private productCrudService: ProductCrudService, private cartCrudService: CartCrudService, private router: Router) { }
 
   ngOnInit(): void {
@@ -44,20 +45,24 @@ export class ViewItemComponent implements OnInit {
   }
   productStuff(): void {
     console.log(this.currItem$);
-    let myContainer = document.getElementById('productInfo') as HTMLElement;
+    // let myContainer = document.getElementById('productInfo') as HTMLElement;
     //myContainer.innerHTML = "Hello <b>" + this.currItem$.description + "</b> !!!";
-    myContainer.innerHTML = (`
-    <div class="flex-container">
-      <div class="left">
-        <img src=${this.currItem$.picture} />
-      </div>
-      <div class="right">
-        <h4 style='text-align:left'>${this.currItem$.product_name}</h4>
-        <p>${this.currItem$.description}</p>
-        <p>$ ${this.currItem$.price.toFixed(2)} </p>
-      </div>
-    </div>
-    `);
+    // myContainer.innerHTML = (`
+    // <div class="flex-container">
+    //   <div class="left">
+    //     <img [src]="'${this.currItem$.picture}'" />
+    //   </div>
+    //   <div class="right">
+    //     <h4 style='text-align:left'>${this.currItem$.product_name}</h4>
+    //     <p>${this.currItem$.description}</p>
+    //     <p>$ ${this.currItem$.price.toFixed(2)} </p>
+    //   </div>
+    // </div>
+    // `);
+
+    this.imgSrc = this.currItem$.picture
+    // let imgGet = document.getElementById("viewItemImg") as HTMLElement;
+    // imgGet.innerHTML = '<img [src]="' + this.currItem$.picture + '" alt="hello"/>'
   }
 
 //   <table class='basicTable'> 
