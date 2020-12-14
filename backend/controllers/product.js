@@ -22,6 +22,9 @@ exports.getProduct = async (req, res, next) => {
             pid: pid
         };
         const [prod] = await Product.find(productDetails);
+        for (var product of prod) {
+            product.picture = "data:image/jpeg;base64," + await fsp.readFile("../backend/assets/products/" + product.picture, 'base64');
+        }
         if (prod.length > 0) { //check if there was any matches
             res.status(202).json(prod[0]);
             console.log('success');
