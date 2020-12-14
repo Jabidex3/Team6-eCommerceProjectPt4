@@ -7,7 +7,6 @@
             <span class="userName">
                 <img class="user" [src]="profilePicture" width="70" height="70" />
                 {{this.loggedInUser$.email}}
-                <!-- {{ sessionStorage.getItem('currentUser').email }} -->
             </span>
         </span>
 
@@ -20,13 +19,6 @@
                 </button>
 
                 <mat-menu #menu="matMenu">
-
-
-                    <!-- <button mat-menu-item routerLink="">
-                <mat-icon></mat-icon>
-                Manage Products
-            </button> -->
-
                     <button mat-menu-item routerLink="/user">
                         <mat-icon>account_circle</mat-icon>
                         User Profile
@@ -51,10 +43,27 @@
 </mat-toolbar>
 
 
-<div style="margin-top: 10px" id="productInfo"></div>
-<button (click)="cancel()">
-    Cancel
-</button>
-<button (click)="post()">
-    Add To Cart
-</button>
+<div class="wrapTable">
+    <h1>Item ID {{this.currItem$.pid}}: {{ this.currItem$.product_name }}</h1>
+    <p class="centerDiv">Click the buttons below to add the item to your cart, or return to the previous page</p>
+    <!-- <div id="productInfo"></div> -->
+    <div class="flex-container">
+        <div class="left">
+            <img [src]="this.currItem$.picture" />
+        </div>
+        <div class="right">
+            <h4 style='text-align:left'>{{ this.currItem$.product_name }}</h4>
+            <p>{{this.currItem$.description}}</p>
+            <p>${{this.currItem$.price.toFixed(2)}} </p>
+        </div>
+    </div>
+</div>
+
+<div class="centerDiv">
+    <button (click)="cancel()" class="cancelBtn">
+        Cancel
+    </button>
+    <button (click)="post()" class="adminBtn">
+        Add To Cart
+    </button>
+</div>

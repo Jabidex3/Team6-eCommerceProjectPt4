@@ -77,13 +77,13 @@ export class CartComponent implements OnInit {
   }
   async total(): Promise<void> {
     try {
-      await this.price$.forEach(value => sessionStorage.setItem('price', JSON.stringify([value][0])));
+      await this.price$.forEach(value => sessionStorage.setItem('price', JSON.stringify([value][0].toFixed(2))));
     }
     catch {
       console.log('error retrieving from db');
     }
 
-    var total = JSON.parse(sessionStorage.getItem('price'));
+    var total = JSON.parse(sessionStorage.getItem('price'));console.log(total)
     let myContainer = document.getElementById('price') as HTMLElement;
     myContainer.innerHTML = "Grand Total: <b>$" + total + "</b>";
   }

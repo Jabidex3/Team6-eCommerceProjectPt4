@@ -16,6 +16,7 @@ export class ViewItemComponent implements OnInit {
   loggedInUser$: User;
   facilitatorForm: FormGroup;
   profilePicture: string;
+  imgSrc: string;
   constructor(private productCrudService: ProductCrudService, private cartCrudService: CartCrudService, private router: Router) { }
 
   ngOnInit(): void {
@@ -44,12 +45,48 @@ export class ViewItemComponent implements OnInit {
   }
   productStuff(): void {
     console.log(this.currItem$);
-    let myContainer = document.getElementById('productInfo') as HTMLElement;
+    // let myContainer = document.getElementById('productInfo') as HTMLElement;
     //myContainer.innerHTML = "Hello <b>" + this.currItem$.description + "</b> !!!";
-    myContainer.innerHTML = "    <table style='width: 50%; margin: auto; text-align: center;' border=1> <tr>     <th>Product Id</th>        <th>Product Name</th>    </tr>    <tr>        <td>" +
-      this.currItem$.pid + "</td>        <td>" + this.currItem$.product_name + "</td>    </tr></table>";
+    // myContainer.innerHTML = (`
+    // <div class="flex-container">
+    //   <div class="left">
+    //     <img [src]="'${this.currItem$.picture}'" />
+    //   </div>
+    //   <div class="right">
+    //     <h4 style='text-align:left'>${this.currItem$.product_name}</h4>
+    //     <p>${this.currItem$.description}</p>
+    //     <p>$ ${this.currItem$.price.toFixed(2)} </p>
+    //   </div>
+    // </div>
+    // `);
+
+    this.imgSrc = this.currItem$.picture
+    // let imgGet = document.getElementById("viewItemImg") as HTMLElement;
+    // imgGet.innerHTML = '<img [src]="' + this.currItem$.picture + '" alt="hello"/>'
   }
 
+//   <table class='basicTable'> 
+//   <thead>
+//     <tr>
+//       <th>Item</th>
+//       <th>Price</th>  
+//     </tr>
+//   </thead>
+//   <tr>
+//     <td>
+//       <div class="flex-container">
+//         <div class="left">
+//           <img [src]=${this.currItem$.picture}
+//         </div>
+//         <div class="right">
+//           <h4 style='text-align:left'>${this.currItem$.product_name}</h4>
+//           <p>${this.currItem$.description}</p>
+//         </div>
+//     </td>
+   
+//     <td>$${this.currItem$.price.toFixed(2)}</td>
+//   </tr>
+// </table>
   cancel(): void {
     sessionStorage.removeItem('currentItem');
     this.router.navigate(["shop"]);
