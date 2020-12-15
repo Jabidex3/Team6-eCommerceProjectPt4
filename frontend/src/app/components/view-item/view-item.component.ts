@@ -13,6 +13,7 @@ import { User } from 'src/app/models/User';
 })
 export class ViewItemComponent implements OnInit {
   currItem$: Product;
+  currItemPic$: Product;
   loggedInUser$: User;
   facilitatorForm: FormGroup;
   profilePicture: string;
@@ -21,6 +22,7 @@ export class ViewItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.currItem$ = JSON.parse(sessionStorage.getItem('currentItem'));
+    this.currItemPic$ = JSON.parse(sessionStorage.getItem('currentItemPic'));
     this.loggedInUser$ = JSON.parse(sessionStorage.getItem('currentUser'));
     this.profilePicture = this.loggedInUser$.picture;
     this.productStuff();
@@ -40,6 +42,8 @@ export class ViewItemComponent implements OnInit {
   post(): void {
     console.log(this.facilitatorForm.value);
     this.cartCrudService.post(this.facilitatorForm.value).subscribe();
+    sessionStorage.removeItem('currentItem');
+    sessionStorage.removeItem('currentItemPic');
     this.router.navigate(["shop"]);
 
   }
@@ -65,30 +69,31 @@ export class ViewItemComponent implements OnInit {
     // imgGet.innerHTML = '<img [src]="' + this.currItem$.picture + '" alt="hello"/>'
   }
 
-//   <table class='basicTable'> 
-//   <thead>
-//     <tr>
-//       <th>Item</th>
-//       <th>Price</th>  
-//     </tr>
-//   </thead>
-//   <tr>
-//     <td>
-//       <div class="flex-container">
-//         <div class="left">
-//           <img [src]=${this.currItem$.picture}
-//         </div>
-//         <div class="right">
-//           <h4 style='text-align:left'>${this.currItem$.product_name}</h4>
-//           <p>${this.currItem$.description}</p>
-//         </div>
-//     </td>
-   
-//     <td>$${this.currItem$.price.toFixed(2)}</td>
-//   </tr>
-// </table>
+  //   <table class='basicTable'> 
+  //   <thead>
+  //     <tr>
+  //       <th>Item</th>
+  //       <th>Price</th>  
+  //     </tr>
+  //   </thead>
+  //   <tr>
+  //     <td>
+  //       <div class="flex-container">
+  //         <div class="left">
+  //           <img [src]=${this.currItem$.picture}
+  //         </div>
+  //         <div class="right">
+  //           <h4 style='text-align:left'>${this.currItem$.product_name}</h4>
+  //           <p>${this.currItem$.description}</p>
+  //         </div>
+  //     </td>
+
+  //     <td>$${this.currItem$.price.toFixed(2)}</td>
+  //   </tr>
+  // </table>
   cancel(): void {
     sessionStorage.removeItem('currentItem');
+    sessionStorage.removeItem('currentItemPic');
     this.router.navigate(["shop"]);
   }
 

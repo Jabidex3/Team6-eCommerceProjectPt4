@@ -25,20 +25,25 @@ export class ProductCrudService {
     return this.http.get<Product>(productItem, { responseType: "json" });//.pipe(tap((_)=>console.log("fetched users")));
   }
 
+  getProductForCart(pid: Number): Observable<Product> {
+    const productItem = `http://localhost:3000/user/shop/cart/${pid}`;
+    console.log(productItem)
+    return this.http.get<Product>(productItem, { responseType: "json" });//.pipe(tap((_)=>console.log("fetched users")));
+  }
+
   private urlProduct = "http://localhost:3000/product";
   postProduct(product: Product): Observable<any> {
     console.log(product);
     return this.http.post(this.urlProduct, product, this.httpOptions);
   }
 
-  deleteProduct(id:number):Observable<any>{
-    
+  deleteProduct(id: number): Observable<any> {
+
     const urlthree = `http://localhost:3000/product/${id}`;
-    return this.http.delete<Product>(urlthree,this.httpOptions);
+    return this.http.delete<Product>(urlthree, this.httpOptions);
   }
 
-  updateProduct(product: Product): Observable<any>
-  {
+  updateProduct(product: Product): Observable<any> {
     console.log(product);
     return this.http.put(this.urlProduct, product, this.httpOptions);
   }

@@ -17,6 +17,7 @@ router.delete('/user/:id', userController.deleteUser)
 // Product routes
 router.get('/user/shop', productController.getAllProducts)
 router.get('/user/shop/:pid', productController.getProduct)
+router.get('/user/shop/cart/:pid', productController.getProductForCart)
 router.post('/product', productController.addProduct)
 router.delete('/product/:pid', productController.deleteProduct)
 router.put('/product', productController.putProduct)

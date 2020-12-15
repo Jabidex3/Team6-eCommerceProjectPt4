@@ -13,7 +13,11 @@ export class UserComponent implements OnInit {
   loggedInUser$: User;
   updateUserForm: FormGroup;
   profilePicture: string;
-  constructor(private userListCrudService: UserListCrudService, private router: Router) { }
+  currUser$: User;
+  constructor(private userListCrudService: UserListCrudService, private router: Router) {
+    this.currUser$ = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.profilePicture = this.currUser$.picture;
+  }
 
   ngOnInit(): void {
     this.loggedInUser$ = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -24,8 +28,8 @@ export class UserComponent implements OnInit {
 
   createFormGroup(): FormGroup {
     return new FormGroup({
-      id: new FormControl({value: this.loggedInUser$.id, disabled: true}, [Validators.required]),
-      email: new FormControl({value: this.loggedInUser$.email, disabled:true}, [Validators.required]),
+      id: new FormControl({ value: this.loggedInUser$.id, disabled: true }, [Validators.required]),
+      email: new FormControl({ value: this.loggedInUser$.email, disabled: true }, [Validators.required]),
       password: new FormControl(this.loggedInUser$.password, [Validators.required]),
       role: new FormControl(this.loggedInUser$.role, [Validators.required]),
       picture: new FormControl("", [Validators.required])
@@ -59,8 +63,15 @@ export class UserComponent implements OnInit {
     // this.userListCrudService.update(this.loggedInUser$.id).subscribe();
     // sessionStorage.removeItem('currentUser');
     // this.router.navigate([""]);
-    this.userListCrudService.update(this.updateUserForm.value).subscribe();
-    sessionStorage.setItem('currentUser', JSON.stringify(this.updateUserForm.value));
+    var user = {
+      id: this.loggedInUser$.id,
+      email: this.loggedInUser$.email,
+      password: this.updateUserForm.controls['password'].value,
+      role: this.loggedInUser$.role,
+      picture: this.profilePicture
+    }
+    this.userListCrudService.update(user).subscribe();
+    sessionStorage.setItem('currentUser', JSON.stringify(user));
     // window.location.reload();
   }
 
