@@ -33,6 +33,6 @@ Users can register an account, shop and add products to their cart, enter their 
 2. Run ```npm start``` to run the application on ```localhost:4200```
 
 ## Team
-* [Jabid Methun](https://github.com/Jabidex3)
-* [Joshua Anderson]()
-* [Natasha Ng](https://github.com/natashang) : UI, documentation
+* [Jabid Methun](https://github.com/Jabidex3) : Project Manager, Backend Developer, Frontend Developer
+* [Joshua Anderson](https://github.com/JoshRand)
+* [Natasha Ng](https://github.com/natashang) : UI, Documentation
